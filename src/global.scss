@@ -35,11 +35,14 @@
 :root {
   /* Force light mode */
   color-scheme: light;
+  --ion-background-color: #ffffff; 
+  --ion-text-color: #000000;
 }
 
 body {
   --ion-background-color: #ffffff;
   --ion-text-color: #000000;
+  color-scheme: light; 
 }
 
 ion-tab-bar {
@@ -48,10 +51,16 @@ ion-tab-bar {
   --color-selected: #3880ff; /* warna teks & icon saat tab aktif (biru default Ionic) */
 }
 
-.login-page {
-  ion-tab-bar {
-    display: none;
-  }
+body.page-login ion-tab-bar {
+  display: none;
+}
+
+ion-input {
+  --color: #000000; 
+}
+
+ion-input {
+  --placeholder-color: #999999;
 }
 
 
