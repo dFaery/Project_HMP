@@ -1,11 +1,42 @@
-<ion-header [translucent]="true">
-  
+<ion-header [translucent]="true" style="background-color: #ffffff;">
+  <ion-toolbar class="tabs">
+    <h3>Berita Favorit Kamu</h3>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">BeritaFavorite</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card class="section-listberita" *ngFor="let fav of favorites">
+    <div style="display: flex; padding: 10px; gap: 10px; background-color: #ffffff;">
+
+      <div style="flex: 2; display: flex; align-items: center">
+        <img [src]="fav.gambarUrl" alt="Berita Image" style="width: 100%; border-radius: 8px; object-fit: cover" />
+      </div>
+
+      <div style="flex: 3">
+        <p style="margin: 0; font-weight: bold">
+          {{ fav.judulBerita }}
+        </p>
+        <p style="margin: 0"><ion-text>{{ fav.tanggalRilis }}</ion-text></p>
+        <p style="margin: 0"><ion-text>by {{ fav.penerbit }}</ion-text></p>
+        <div style="display: flex; align-items: center; gap: 4px">
+          <ion-icon name="star" size="small" color="warning"></ion-icon>
+          <span>{{ fav.rating }} ({{ fav.jumlahReview }} reviews)</span>
+        </div>
+      </div>
+
+      <div style="flex: 1; display: flex; align-items: center">
+        <ion-button fill="outline" size="small" (click)="removeFavorite(fav)">
+        <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+      </div>
+      
+    </div>
+  </ion-card>
 </ion-content>
+
+<ion-toast
+  [isOpen]="isToastOpen"
+  message="{{ toastMessage }}"
+  duration="1000"
+  (didDismiss)="isToastOpen = false">
+</ion-toast>

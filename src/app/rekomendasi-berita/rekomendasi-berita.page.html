@@ -6,30 +6,39 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div style="display: flex; padding: 10px; gap: 10px">
-    <!-- Image section -->
-    <div style="flex: 2; display: flex; align-items: center">
-      <img [src]="newsItem.image" alt="Berita Image" style="width: 100%; border-radius: 8px; object-fit: cover" />
-    </div>
+  <ion-card class="section-listberita" *ngFor="let berita of berita">
+    <div style="display: flex; padding: 10px; gap: 10px; background-color: #ffffff;">
+      <!-- Image section -->
+      <div style="flex: 2; display: flex; align-items: center">
+        <img [src]="berita.gambarUrl" alt="Berita Image" style="width: 100%; border-radius: 8px; object-fit: cover" />
+      </div>
 
-    <!-- News text and details -->
-    <div style="flex: 3">
-      <p style="margin: 0; font-weight: bold">
-        {{ newsItem.title }}
-      </p>
-      <p style="margin: 0"><ion-text>{{ newsItem.date }}</ion-text></p>
-      <p style="margin: 0"><ion-text>by {{ newsItem.source }}</ion-text></p>
-      <div style="display: flex; align-items: center; gap: 4px">
-        <ion-icon name="star" size="small" color="warning"></ion-icon>
-        <span>{{ newsItem.rating }} ({{ newsItem.reviews }} reviews)</span>
+      <!-- News text and details -->
+      <div style="flex: 3">
+        <p style="margin: 0; font-weight: bold">
+          {{ berita.judulBerita }}
+        </p>
+        <p style="margin: 0"><ion-text>{{ berita.tanggalRilis }}</ion-text></p>
+        <p style="margin: 0"><ion-text>by {{ berita.penerbit }}</ion-text></p>
+        <div style="display: flex; align-items: center; gap: 4px">
+          <ion-icon name="star" size="small" color="warning"></ion-icon>
+          <span>{{ berita.rating }} ({{ berita.jumlahReview }} reviews)</span>
+        </div>
+      </div>
+
+      <!-- Favorite button (Bookmark) -->
+      <div style="flex: 1; display: flex; align-items: center">
+        <ion-button fill="outline" size="small" (click)="addToFavorite(berita)">
+          <ion-icon name="bookmark-outline"></ion-icon>
+        </ion-button>
       </div>
     </div>
-
-    <!-- Favorite button (Bookmark) -->
-    <div style="flex: 1; display: flex; align-items: center">
-      <ion-button fill="outline" size="small" (click)="addToFavorite(newsItem)">
-        <ion-icon name="bookmark-outline"></ion-icon>
-      </ion-button>
-    </div>
-  </div>
+  </ion-card>
 </ion-content>
+
+<ion-toast
+  [isOpen]="isToastOpen"
+  message="{{ toastMessage }}"
+  duration="1000"
+  (didDismiss)="isToastOpen = false">
+</ion-toast>
