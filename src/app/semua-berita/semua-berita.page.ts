@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FavoriteService, FavoriteNews } from '../services/favorite.service';
+
 
 @Component({
   selector: 'app-semua-berita',
@@ -7,7 +9,7 @@ import { Component } from '@angular/core';
   standalone: false,
 })
 export class SemuaBeritaPage {
-  constructor() {}
+  constructor(private favoriteService: FavoriteService) {}
 
   berita_trending = [
     {
@@ -100,4 +102,14 @@ export class SemuaBeritaPage {
       jumlahReview: 50,
     },
   ];
+
+  isToastOpen = false;
+  toastMessage = '';
+  
+  favorites: FavoriteNews[] = [];
+  addToFavorite(favorite: FavoriteNews) {
+    this.toastMessage = 'Berita ditambahkan ke favorit';
+    this.isToastOpen = true;
+    this.favoriteService.addFavorite(favorite);
+  }
 }

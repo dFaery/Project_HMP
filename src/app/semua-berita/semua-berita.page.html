@@ -37,7 +37,7 @@
       </div>
 
       <div style="flex: 1; display: flex; align-items: center">
-        <ion-button fill="outline" size="small">
+      <ion-button fill="outline" size="small" (click)="addToFavorite(berita)">
           <ion-icon name="bookmark-outline"></ion-icon>
         </ion-button>
       </div>
@@ -50,3 +50,10 @@
     </ion-toolbar>
   </ion-header>
 </ion-content>
+
+<ion-toast
+  [isOpen]="isToastOpen"
+  message="{{ toastMessage }}"
+  duration="1000"
+  (didDismiss)="isToastOpen = false">
+</ion-toast>
