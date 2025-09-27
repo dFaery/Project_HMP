@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="tabs">
+    <h3>Rekomendasi Berita untuk Kamu</h3>
+    <p>Terakhir diperbaharui 26 menit lalu</p>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div style="display: flex; padding: 10px; gap: 10px">
+    <!-- Image section -->
+    <div style="flex: 2; display: flex; align-items: center">
+      <img [src]="newsItem.image" alt="Berita Image" style="width: 100%; border-radius: 8px; object-fit: cover" />
+    </div>
+
+    <!-- News text and details -->
+    <div style="flex: 3">
+      <p style="margin: 0; font-weight: bold">
+        {{ newsItem.title }}
+      </p>
+      <p style="margin: 0"><ion-text>{{ newsItem.date }}</ion-text></p>
+      <p style="margin: 0"><ion-text>by {{ newsItem.source }}</ion-text></p>
+      <div style="display: flex; align-items: center; gap: 4px">
+        <ion-icon name="star" size="small" color="warning"></ion-icon>
+        <span>{{ newsItem.rating }} ({{ newsItem.reviews }} reviews)</span>
+      </div>
+    </div>
+
+    <!-- Favorite button (Bookmark) -->
+    <div style="flex: 1; display: flex; align-items: center">
+      <ion-button fill="outline" size="small" (click)="addToFavorite(newsItem)">
+        <ion-icon name="bookmark-outline"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

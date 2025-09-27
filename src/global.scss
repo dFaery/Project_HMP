@@ -32,6 +32,31 @@
  * https://ionicframework.com/docs/theming/dark-mode
  */
 
+:root {
+  /* Force light mode */
+  color-scheme: light;
+}
+
+body {
+  --ion-background-color: #ffffff;
+  --ion-text-color: #000000;
+}
+
+ion-tab-bar {
+  --background: #ffffff;   /* putih */
+  --color: #000000;        /* warna teks normal */
+  --color-selected: #3880ff; /* warna teks & icon saat tab aktif (biru default Ionic) */
+}
+
+.login-page {
+  ion-tab-bar {
+    display: none;
+  }
+}
+
+
+
+
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import "@ionic/angular/css/palettes/dark.system.css";
+/* @import "@ionic/angular/css/palettes/dark.class.csss"; */
+@import '@ionic/angular/css/palettes/dark.always.css';

@@ -1,0 +1,66 @@
+.login-page {
+  --background: #ffffff;
+
+  display: flex;
+  justify-content: center; /* center horizontal */
+  align-items: center; /* center vertical */
+  height: 100%; /* penuh layar */
+
+  .login-container {
+    width: 100%;
+    max-width: 360px; /* biar tidak terlalu lebar */
+    padding: 20px;
+    text-align: center;
+  }
+
+  .header {
+    margin-bottom: 30px;
+
+    h1 {
+      font-weight: 700;
+      color: #282a2e;
+    }
+
+    p {
+      color: #3b3c3c;
+    }
+  }
+
+  .input-item {
+    background: #fbfbfb;
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    margin: 12px 0;
+    padding: 0 8px;
+  }
+
+  .login-btn {
+    --background: #114ee9;
+    --border-radius: 12px;
+    margin-top: 20px;
+    height: 48px;
+    font-weight: 600;
+  }
+
+  .signup-link {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #3b3c3c;
+
+    a {
+      margin-left: 6px;
+      color: #114ee9;
+      font-weight: 600;
+      text-decoration: none;
+    }
+  }
+
+  .terms {
+    margin-top: 40px;
+
+    p {
+      font-size: 12px;
+      color: #aaa;
+    }
+  }
+}

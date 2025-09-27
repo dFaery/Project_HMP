@@ -1,0 +1,52 @@
+<ion-header [translucent]="true" style="background-color: #ffffff;">
+  <ion-searchbar animated="true" placeholder="Cari Berita"></ion-searchbar>
+  <ion-segment value="trending" class="tabs">
+    <ion-segment-button value="trending">
+      <ion-label class="nav-tabs">Trending</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="economics" class="tabs">
+      <ion-label class="nav-tabs">Economics</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="technology" class="tabs">
+      <ion-label class="nav-tabs">Technology</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card class="section-listberita" *ngFor="let berita of berita_trending">
+    <div style="display: flex; padding: 10px; gap: 10px; background-color: #ffffff;">
+      <div style="flex: 2; display: flex; align-items: center">
+        <img
+          src="{{berita.gambarUrl}}"
+          alt="Berita Image" style="width: 100%; border-radius: 8px; object-fit: cover" />
+      </div>
+
+      <div style="flex: 3">
+        <p style="margin: 0; font-weight: bold">
+          {{berita.judulBerita}}
+        </p>
+        <p style="margin: 0"><ion-text>{{berita.tanggalRilis}}</ion-text></p>
+        <p style="margin: 0"><ion-text>{{berita.penerbit}}</ion-text></p>
+        <div style="display: flex; align-items: center; gap: 4px">
+          <ion-icon name="star" size="small" color="warning"></ion-icon>
+          <span>{{berita.rating}} | {{berita.jumlahReview}} ulasan</span>
+        </div>
+      </div>
+
+      <div style="flex: 1; display: flex; align-items: center">
+        <ion-button fill="outline" size="small">
+          <ion-icon name="bookmark-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+
+  </ion-card>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">semua-berita</ion-title>
+    </ion-toolbar>
+  </ion-header>
+</ion-content>
