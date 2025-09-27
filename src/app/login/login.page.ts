@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 interface Account {
   accountEmail: string;
@@ -51,5 +52,13 @@ export class LoginPage {
       });
       await alert.present();
     }
+  }
+
+  ionViewWillEnter() {
+    document.body.classList.add('page-login');
+  }
+
+  ionViewWillLeave() {
+    document.body.classList.remove('page-login');
   }
 }

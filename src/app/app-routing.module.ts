@@ -3,14 +3,18 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () =>
-      import('./rekomendasi-berita/rekomendasi-berita.module').then((m) => m.RekomendasiBeritaPageModule),
-  },
-  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',
+  },
+    {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () =>
+      import('./rekomendasi-berita/rekomendasi-berita.module').then((m) => m.RekomendasiBeritaPageModule),
   },
   {
     path: 'berita-favorite',
@@ -27,10 +31,6 @@ const routes: Routes = [
   {
     path: 'semua-berita',
     loadChildren: () => import('./semua-berita/semua-berita.module').then( m => m.SemuaBeritaPageModule)
-  },
-  {
-    path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
 ];
 

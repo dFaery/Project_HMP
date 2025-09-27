@@ -2,13 +2,15 @@
   ion-content {
     --background: #ffffff; // Ulangi background untuk ion-content jika perlu
   }
+  .full-height {
+    height: 100%;
+  }
 
   // --- Gaya Konten Login (Responsif) ---
   .login-container {
     width: 100%;
     text-align: center;
   }
-  
   // --- Gaya Header ---
   .header {
     margin-bottom: 30px;
@@ -24,15 +26,15 @@
   }
 
   // --- Gaya Input Field (ion-item) ---
-  
+
   // Target <ion-item> untuk border, background, dan padding
   ion-item {
     // Menimpa variabel latar belakang dan border bawaan Ionic
-    --background: #fbfbfb; 
+    --background: #fbfbfb;
     --border-color: transparent; // Hapus border default
     --inner-border-width: 0; // Hapus garis pemisah antar item
     --padding-start: 8px; // Padding di awal item
-    --padding-end: 8px;   // Padding di akhir item
+    --padding-end: 8px; // Padding di akhir item
     --min-height: 50px; // Tinggi minimum item
 
     border: 1px solid #e8e8e8; // Border kustom
@@ -45,7 +47,7 @@
 
   ion-input {
     // Variabel untuk teks yang diketik dan placeholder
-    --color: #282a2e; 
+    --color: #282a2e;
     --placeholder-color: #666666;
     // Variabel untuk ikon di slot start/end
     --ion-color-base: #666666;
