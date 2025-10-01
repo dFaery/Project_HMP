@@ -1,6 +1,6 @@
 <ion-header [translucent]="true" style="background-color: #ffffff;">
   <ion-searchbar animated="true" placeholder="Cari Berita"></ion-searchbar>
-  <ion-segment value="trending" class="tabs">
+  <ion-segment class="tabs" [(ngModel)]="jenisTampilan">
     <ion-segment-button value="trending">
       <ion-label class="nav-tabs">Trending</ion-label>
     </ion-segment-button>
@@ -16,44 +16,99 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card class="section-listberita" *ngFor="let berita of berita_trending">
-    <div style="display: flex; padding: 10px; gap: 10px; background-color: #ffffff;">
-      <div style="flex: 2; display: flex; align-items: center">
-        <img
-          src="{{berita.gambarUrl}}"
-          alt="Berita Image" style="width: 100%; border-radius: 8px; object-fit: cover" />
-      </div>
+  <ion-grid *ngIf="jenisTampilan === 'trending'">
+    <ion-row *ngFor="let beritas of chunkArray(berita_trending, 2)">
+      <ion-col size="6" *ngFor="let berita of beritas" class="news-col">
+        <ion-card class="news-card">
+          <ion-img [src]="berita.gambarUrl" alt="Gambar Berita"></ion-img>
 
-      <div style="flex: 3">
-        <p style="margin: 0; font-weight: bold">
-          {{berita.judulBerita}}
-        </p>
-        <p style="margin: 0"><ion-text>{{berita.tanggalRilis}}</ion-text></p>
-        <p style="margin: 0"><ion-text>{{berita.penerbit}}</ion-text></p>
-        <div style="display: flex; align-items: center; gap: 4px">
-          <ion-icon name="star" size="small" color="warning"></ion-icon>
-          <span>{{berita.rating}} | {{berita.jumlahReview}} ulasan</span>
-        </div>
-      </div>
+          <ion-card-header>
+            <ion-card-title class="judul-berita">{{ berita.judulBerita }}</ion-card-title>
+            <ion-card-subtitle>
+              {{ berita.tanggalRilis }} | {{ berita.penerbit }}
+            </ion-card-subtitle>
+          </ion-card-header>
 
-      <div style="flex: 1; display: flex; align-items: center">
-      <ion-button fill="outline" size="small" (click)="addToFavorite(berita)">
-          <ion-icon name="bookmark-outline"></ion-icon>
-        </ion-button>
-      </div>
-    </div>
+          <ion-card-content class="news-card-content">
+            <ion-item lines="none">
+              <ion-icon name="star" size="small" color="warning" slot="start"></ion-icon>
+              <ion-label>
+                {{ berita.rating }} | {{ berita.jumlahReview }} ulasan
+              </ion-label>
+            </ion-item>
 
-  </ion-card>
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">semua-berita</ion-title>
-    </ion-toolbar>
-  </ion-header>
+            <ion-button fill="outline" size="small" expand="block" (click)="addToFavorite(berita)">
+              <ion-icon name="bookmark-outline" slot="start"></ion-icon>
+              Tambah ke Favorit
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="jenisTampilan === 'economics'">
+    <ion-row *ngFor="let beritas of chunkArray(berita_economics, 2)">
+      <ion-col size="6" *ngFor="let berita of beritas" class="news-col">
+        <ion-card class="news-card">
+          <ion-img [src]="berita.gambarUrl" alt="Gambar Berita"></ion-img>
+
+          <ion-card-header>
+            <ion-card-title class="judul-berita">{{ berita.judulBerita }}</ion-card-title>
+            <ion-card-subtitle>
+              {{ berita.tanggalRilis }} | {{ berita.penerbit }}
+            </ion-card-subtitle>
+          </ion-card-header>
+
+          <ion-card-content class="news-card-content">
+            <ion-item lines="none">
+              <ion-icon name="star" size="small" color="warning" slot="start"></ion-icon>
+              <ion-label>
+                {{ berita.rating }} | {{ berita.jumlahReview }} ulasan
+              </ion-label>
+            </ion-item>
+
+            <ion-button fill="outline" size="small" expand="block" (click)="addToFavorite(berita)">
+              <ion-icon name="bookmark-outline" slot="start"></ion-icon>
+              Tambah ke Favorit
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="jenisTampilan === 'technology'">
+    <ion-row *ngFor="let beritas of chunkArray(berita_technology, 2)">
+      <ion-col size="6" *ngFor="let berita of beritas" class="news-col">
+        <ion-card class="news-card">
+          <ion-img [src]="berita.gambarUrl" alt="Gambar Berita"></ion-img>
+
+          <ion-card-header>
+            <ion-card-title class="judul-berita">{{ berita.judulBerita }}</ion-card-title>
+            <ion-card-subtitle>
+              {{ berita.tanggalRilis }} | {{ berita.penerbit }}
+            </ion-card-subtitle>
+          </ion-card-header>
+
+          <ion-card-content class="news-card-content">
+            <ion-item lines="none">
+              <ion-icon name="star" size="small" color="warning" slot="start"></ion-icon>
+              <ion-label>
+                {{ berita.rating }} | {{ berita.jumlahReview }} ulasan
+              </ion-label>
+            </ion-item>
+
+            <ion-button fill="outline" size="small" expand="block" (click)="addToFavorite(berita)">
+              <ion-icon name="bookmark-outline" slot="start"></ion-icon>
+              Tambah ke Favorit
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
 
-<ion-toast
-  [isOpen]="isToastOpen"
-  message="{{ toastMessage }}"
-  duration="1000"
-  (didDismiss)="isToastOpen = false">
+<ion-toast [isOpen]="isToastOpen" message="{{ toastMessage }}" duration="1000" (didDismiss)="isToastOpen = false">
 </ion-toast>
