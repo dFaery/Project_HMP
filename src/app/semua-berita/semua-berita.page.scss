@@ -4,10 +4,44 @@ ion-segment-button {
   --indicator-color: #3880ff;
 }
 
+ion-item{
+  --background: transparent;
+  --padding-start: 0;
+  --inner-padding-end:0;
+}
+
 .tabs{
     background-color: #ffffff;
 }
 
 .nav-tabs{
     font-size: 10px;
+}
+
+.news-col {
+  display: flex;
+}
+
+.news-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+}
+
+.judul-berita {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3em;
+  max-height: 2.6em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #000000;
+}
+
+.news-card-content {
+  background-color: white;
+  margin-top: auto;
 }

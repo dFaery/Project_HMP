@@ -32,6 +32,11 @@ const routes: Routes = [
     path: 'semua-berita',
     loadChildren: () => import('./semua-berita/semua-berita.module').then( m => m.SemuaBeritaPageModule)
   },
+  {
+    path: 'detail-berita/:index',
+    loadChildren: () => import('./detail-berita/detail-berita.module').then( m => m.DetailBeritaPageModule)
+  },
+
 ];
 
 @NgModule({

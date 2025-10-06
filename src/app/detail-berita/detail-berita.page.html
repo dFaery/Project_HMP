@@ -1,0 +1,47 @@
+<ion-content [fullscreen]="true" class="news-page">
+  <div class="news-container">
+    <!-- Header -->
+    <div class="news-header">
+      <h2>{{ berita_trending[index].judulBerita }}</h2>
+      <p class="date">{{ berita_trending[index].tanggalRilis }}</p>
+      <div class="channel">       
+        <span>{{ berita_trending[index].penerbit }}</span>
+      </div>
+    </div>
+
+    <!-- Image -->
+    <div class="news-image">
+      <img [src]="berita_trending[index].gambarUrl" alt="news image" />
+    </div>
+
+    <!-- Content -->
+    <div class="news-content">
+      <p>
+        {{ berita_trending[index].isiBerita }}
+      </p>
+    </div>
+
+    <!-- Comments -->
+    <div class="comments-section">
+      <h3>Komentar</h3>
+
+      <div *ngFor="let c of filteredComments" class="comment-item">
+        <img [src]="c.avatar" alt="avatar" class="avatar" />
+        <div class="comment-body">
+          <p class="username">{{ c.username }}</p>
+          <p class="text">{{ c.comment }}</p>
+        </div>
+      </div>
+
+      <!-- Add new comment -->
+      <div class="add-comment">
+        <img src="assets/my-avatar.png" alt="my avatar" class="avatar" />
+        <ion-input
+          [(ngModel)]="newComment"
+          placeholder="Tambah komentar"
+        ></ion-input>
+        <ion-icon name="send-outline" (click)="addComment()"></ion-icon>
+      </div>
+    </div>
+  </div>
+</ion-content>
