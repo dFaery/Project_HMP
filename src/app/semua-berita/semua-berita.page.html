@@ -17,9 +17,9 @@
 
 <ion-content [fullscreen]="true">
   <ion-grid *ngIf="jenisTampilan === 'trending'">
-    <ion-row *ngFor="let beritas of chunkArray(berita_trending, 2)">
-      <ion-col size="6" *ngFor="let berita of beritas" class="news-col">
-        <ion-card class="news-card">
+    <ion-row *ngFor="let beritas of chunkArray(berita_trending, 2); let i = index">
+      <ion-col size="6" *ngFor="let berita of beritas; let i2 = index" class="news-col">
+        <ion-card class="news-card" routerLink="/detail-berita/{{(i*2)+i2}}">
           <ion-img [src]="berita.gambarUrl" alt="Gambar Berita"></ion-img>
 
           <ion-card-header>

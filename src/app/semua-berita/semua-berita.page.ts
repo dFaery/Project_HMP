@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FavoriteService, FavoriteNews } from '../services/favorite.service';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-semua-berita',
@@ -8,9 +10,9 @@ import { FavoriteService, FavoriteNews } from '../services/favorite.service';
   standalone: false,
 })
 export class SemuaBeritaPage {
-  constructor(private favoriteService: FavoriteService) {}
+  constructor(private favoriteService: FavoriteService, private route: ActivatedRoute) {}
   jenisTampilan: string = 'trending';
-
+  
   berita_trending = [
     {
       judulBerita:
