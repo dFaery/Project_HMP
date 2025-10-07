@@ -1,11 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController } from '@ionic/angular';
-import { Router } from '@angular/router';
-
-interface Account {
-  accountEmail: string;
-  accountPass: string;
-}
+import { Akunservice } from '../services/akunservice';
 
 @Component({
   selector: 'app-login',
@@ -17,36 +12,21 @@ export class LoginPage {
   email: string = '';
   pass: string = '';
 
-  acc: Account = {
-    accountEmail: '',
-    accountPass: '',
-  };
-
-  // Dummy akun (simulasi database)
-  accounts: Account[] = [
-    { accountEmail: 'thia@gmail.com', accountPass: 'thia' },
-    { accountEmail: 'hans@gmail.com', accountPass: 'hans' },
-    { accountEmail: 'kevin@gmail.com', accountPass: 'kevin' },
-    { accountEmail: 'hendra@gmail.com', accountPass: 'hendra' },
-  ];
-
   constructor(
     private navCtrl: NavController,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private akunService: Akunservice
   ) {}
 
   async checkAcc() {
-    const found = this.accounts.find(
-      (acc) => acc.accountEmail === this.email && acc.accountPass === this.pass
-    );
+    const user = this.akunService.login(this.email, this.pass);
 
-    if (found) {
-      //kalau sukses login
-      this.navCtrl.navigateRoot('/home');
+    if (user) {
+      // Jika login berhasil
+      this.navCtrl.navigateRoot('/kelola-akun');
     } else {
-      //kalau gagal login
       const alert = await this.alertCtrl.create({
-        header: 'Login Failed',
+        header: 'Login Gagal',
         message: 'Email atau password salah!',
         buttons: ['OK'],
       });
