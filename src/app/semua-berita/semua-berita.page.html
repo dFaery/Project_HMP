@@ -7,21 +7,22 @@
       <ion-label class="nav-tabs">Trending</ion-label>
     </ion-segment-button>
 
-    <ion-segment-button value="economics" class="tabs">
+    <ion-segment-button value="economics">
       <ion-label class="nav-tabs">Economics</ion-label>
     </ion-segment-button>
 
-    <ion-segment-button value="technology" class="tabs">
+    <ion-segment-button value="technology">
       <ion-label class="nav-tabs">Technology</ion-label>
     </ion-segment-button>
   </ion-segment>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <!-- TRENDING -->
   <ion-grid *ngIf="jenisTampilan === 'trending'">
-    <ion-row *ngFor="let beritas of chunkArray(berita_trending, 2); let i = index">
+    <ion-row *ngFor="let beritas of chunkArray(beritaservice.berita_trending, 2); let i = index">
       <ion-col size="6" *ngFor="let berita of beritas; let i2 = index" class="news-col">
-        <ion-card class="news-card" routerLink="/detail-berita/{{(i*2)+i2}}">
+        <ion-card class="news-card" [routerLink]="['/detail-berita', (i*2)+i2]">
           <ion-img [src]="berita.gambarUrl" alt="Gambar Berita"></ion-img>
 
           <ion-card-header>
@@ -49,8 +50,9 @@
     </ion-row>
   </ion-grid>
 
+  <!-- ECONOMICS -->
   <ion-grid *ngIf="jenisTampilan === 'economics'">
-    <ion-row *ngFor="let beritas of chunkArray(berita_economics, 2)">
+    <ion-row *ngFor="let beritas of chunkArray(beritaservice.berita_economics, 2)">
       <ion-col size="6" *ngFor="let berita of beritas" class="news-col">
         <ion-card class="news-card">
           <ion-img [src]="berita.gambarUrl" alt="Gambar Berita"></ion-img>
@@ -80,8 +82,9 @@
     </ion-row>
   </ion-grid>
 
+  <!-- TECHNOLOGY -->
   <ion-grid *ngIf="jenisTampilan === 'technology'">
-    <ion-row *ngFor="let beritas of chunkArray(berita_technology, 2)">
+    <ion-row *ngFor="let beritas of chunkArray(beritaservice.berita_technology, 2)">
       <ion-col size="6" *ngFor="let berita of beritas" class="news-col">
         <ion-card class="news-card">
           <ion-img [src]="berita.gambarUrl" alt="Gambar Berita"></ion-img>
@@ -146,5 +149,10 @@
 
 </ion-content>
 
-<ion-toast [isOpen]="isToastOpen" message="{{ toastMessage }}" duration="1000" (didDismiss)="isToastOpen = false">
+<!-- TOAST -->
+<ion-toast
+  [isOpen]="isToastOpen"
+  [message]="toastMessage"
+  duration="1000"
+  (didDismiss)="isToastOpen = false">
 </ion-toast>
