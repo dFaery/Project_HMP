@@ -23,7 +23,7 @@ export class LoginPage {
 
     if (user) {
       // Jika login berhasil
-      this.navCtrl.navigateRoot('/kelola-akun');
+      this.navCtrl.navigateRoot('/home');
     } else {
       const alert = await this.alertCtrl.create({
         header: 'Login Gagal',
