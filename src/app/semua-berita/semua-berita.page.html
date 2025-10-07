@@ -1,6 +1,6 @@
 <ion-header [translucent]="true" style="background-color: #ffffff;">
 
-  <ion-searchbar animated="true" placeholder="Cari Berita" [(ngModel)]="beritaDicari" (keyup) = "cariBeritaByJudul()"></ion-searchbar>
+  <ion-searchbar animated="true" placeholder="Cari Berita" [(ngModel)]="beritaDicari" (keyup) = "cariBeritaByJudul()" [ngStyle]="{color: 'black'}"></ion-searchbar>
 
   <ion-segment class="tabs" [(ngModel)]="jenisTampilan">
     <ion-segment-button value="trending">

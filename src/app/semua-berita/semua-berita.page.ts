@@ -15,12 +15,14 @@ export class SemuaBeritaPage {
     private route: ActivatedRoute,
     public beritaservice: Beritaservice
   ) {}
+
   jenisTampilan: string = 'trending';
+  beritaDicari: string = '';
 
   semuaBerita = [
-  ...this.berita_trending,
-  ...this.berita_economics,
-  ...this.berita_technology,
+  ...this.beritaservice.berita_trending,
+  ...this.beritaservice.berita_economics,
+  ...this.beritaservice.berita_technology,
   ];
 
   hasilPencarian = [...this.semuaBerita];
