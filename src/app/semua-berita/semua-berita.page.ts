@@ -12,7 +12,8 @@ import { ActivatedRoute } from '@angular/router';
 export class SemuaBeritaPage {
   constructor(private favoriteService: FavoriteService, private route: ActivatedRoute) {}
   jenisTampilan: string = 'trending';
-  
+  beritaDicari : string = "";
+
   berita_trending = [
     {
       judulBerita:
@@ -104,6 +105,29 @@ export class SemuaBeritaPage {
       jumlahReview: 50,
     },
   ];
+
+  semuaBerita = [
+  ...this.berita_trending,
+  ...this.berita_economics,
+  ...this.berita_technology,
+  ];
+
+  hasilPencarian = [...this.semuaBerita];
+
+ cariBeritaByJudul() {
+    const lowerKeyword = this.beritaDicari.toLowerCase();
+    this.jenisTampilan = "search";
+    if (!lowerKeyword) {
+      // kalau kosong, tampilkan semua berita
+      this.hasilPencarian = [...this.semuaBerita];
+    } else {
+      this.hasilPencarian = this.semuaBerita.filter(berita =>
+        berita.judulBerita.toLowerCase().includes(lowerKeyword)
+      );
+    }
+  }
+
+
 
   chunkArray(arr: any[], chunkSize: number): any[][] {
     const result = [];
