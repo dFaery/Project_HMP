@@ -1,5 +1,6 @@
 <ion-header [translucent]="true" style="background-color: #ffffff;">
-  <ion-searchbar animated="true" placeholder="Cari Berita"></ion-searchbar>
+
+  <ion-searchbar animated="true" placeholder="Cari Berita" [(ngModel)]="beritaDicari" (keyup) = "cariBeritaByJudul()" [ngStyle]="{color: 'black'}"></ion-searchbar>
 
   <ion-segment class="tabs" [(ngModel)]="jenisTampilan">
     <ion-segment-button value="trending">
@@ -112,6 +113,40 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  
+  <ion-grid *ngIf="jenisTampilan === 'search'">
+    <ion-row *ngFor="let beritas of chunkArray(hasilPencarian, 2)">
+      <ion-col size="6" *ngFor="let berita of beritas" class="news-col">
+        <ion-card class="news-card">
+          <ion-img [src]="berita.gambarUrl" alt="Gambar Berita"></ion-img>
+
+          <ion-card-header>
+            <ion-card-title class="judul-berita">{{ berita.judulBerita }}</ion-card-title>
+            <ion-card-subtitle>
+              {{ berita.tanggalRilis }} | {{ berita.penerbit }}
+            </ion-card-subtitle>
+          </ion-card-header>
+
+          <ion-card-content class="news-card-content">
+            <ion-item lines="none">
+              <ion-icon name="star" size="small" color="warning" slot="start"></ion-icon>
+              <ion-label>
+                {{ berita.rating }} | {{ berita.jumlahReview }} ulasan
+              </ion-label>
+            </ion-item>
+
+            <ion-button fill="outline" size="small" expand="block" (click)="addToFavorite(berita)">
+              <ion-icon name="bookmark-outline" slot="start"></ion-icon>
+              Tambah ke Favorit
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+
+
 </ion-content>
 
 <!-- TOAST -->
