@@ -1,30 +1,7 @@
 import { Component } from '@angular/core';
-import {
-  IonBackButton,
-  IonButton,
-  IonButtons,
-  IonContent,
-  IonHeader,
-  IonIcon,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonListHeader,
-  IonRange,
-  IonText,
-  IonTitle,
-  IonToggle,
-  IonToolbar,
-} from '@ionic/angular/standalone';
-
-import { addIcons } from 'ionicons';
-import {
-  personCircle,
-  personCircleOutline,
-  sunny,
-  sunnyOutline,
-} from 'ionicons/icons';
 import { Router } from '@angular/router';
+import { Akunservice, Akun } from '../services/akunservice';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-kelola-akun',
@@ -33,13 +10,40 @@ import { Router } from '@angular/router';
   standalone: false,
 })
 export class KelolaAkunPage {
-  userData: any;
+  userData: Akun | null = null;
 
-  constructor(private router: Router) {
-    const nav = this.router.getCurrentNavigation();
-    if (nav?.extras.state) {
-      this.userData = nav.extras.state;
+  constructor(
+    private router: Router,
+    private akunService: Akunservice,
+    private alertCtrl: AlertController
+  ) {}
+
+  ionViewWillEnter() {
+    this.userData = this.akunService.getCurrentUser();
+    if (!this.userData) {
+      // kalau tidak ada user login, kembali ke halaman login
+      this.router.navigateByUrl('/login');
     }
   }
-  
+
+  async logout() {
+    const alert = await this.alertCtrl.create({
+      header: 'Konfirmasi Logout',
+      message: 'Apakah kamu yakin ingin keluar?',
+      buttons: [
+        {
+          text: 'Batal',
+          role: 'cancel',
+        },
+        {
+          text: 'Logout',
+          handler: () => {
+            this.akunService.logout();
+            this.router.navigateByUrl('/login');
+          },
+        },
+      ],
+    });
+    await alert.present();
+  }
 }
