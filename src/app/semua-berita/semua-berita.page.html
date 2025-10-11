@@ -20,8 +20,11 @@
 <ion-content [fullscreen]="true">
   <!-- TRENDING -->
   <ion-grid *ngIf="jenisTampilan === 'trending'">
+
     <ion-row *ngFor="let beritas of chunkArray(getBeritaByKategori('trending'), 2); let i = index">
+
       <ion-col size="6" *ngFor="let berita of beritas; let i2 = index" class="news-col">
+        
         <ion-card class="news-card" [routerLink]="['/detail-berita', berita.id]">
           <ion-img [src]="berita.gambarUrl" alt="Gambar Berita"></ion-img>
 
@@ -47,7 +50,9 @@
           </ion-card-content>
         </ion-card>
       </ion-col>
+
     </ion-row>
+
   </ion-grid>
 
   <!-- ECONOMICS -->

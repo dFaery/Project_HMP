@@ -7,7 +7,7 @@ export class Beritaservice {
 
   berita = [
     {
-      id:1,
+      id:0,
       judulBerita:
         'Dedi Mulyadi Undang Kepala BGN Jabar Evaluasi Keracunan Massal MBG',
       tanggalRilis: '2025-05-29',
@@ -19,7 +19,7 @@ export class Beritaservice {
       kategori: ['trending','economics'],
     },
     {
-      id:2,
+      id:1,
       judulBerita: 'Indonesia Raih Juara Umum di ASEAN Games 2025',
       tanggalRilis: '2025-06-15',
       gambarUrl:
@@ -31,7 +31,7 @@ export class Beritaservice {
 
     },
     {
-      id:3,
+      id:2,
       judulBerita:
         'Pemilu Serentak 2025 Catat Partisipasi Tertinggi dalam 20 Tahun',
       tanggalRilis: '2025-07-01',
@@ -44,7 +44,7 @@ export class Beritaservice {
 
     },
     {
-      id:4,
+      id:3,
       judulBerita: 'Rupiah Menguat ke Rp14.800 per Dolar AS',
       tanggalRilis: '2025-06-10',
       gambarUrl:
@@ -56,7 +56,7 @@ export class Beritaservice {
 
     },
     {
-      id:5,
+      id:4,
       judulBerita: 'Pemerintah Umumkan Subsidi Baru untuk UMKM',
       tanggalRilis: '2025-07-03',
       gambarUrl:
@@ -68,7 +68,7 @@ export class Beritaservice {
 
     },
     {
-      id:6,
+      id:5,
       judulBerita: 'IHSG Ditutup Menguat 1,2% di Tengah Optimisme Pasar',
       tanggalRilis: '2025-08-12',
       gambarUrl:
@@ -80,7 +80,7 @@ export class Beritaservice {
 
     },
     {
-      id:7,
+      id:6,
       judulBerita: 'Startup Indonesia Luncurkan AI Chatbot Mirip Manusia',
       tanggalRilis: '2025-06-25',
       gambarUrl:
@@ -92,7 +92,7 @@ export class Beritaservice {
 
     },
     {
-      id:8,
+      id:7,
       judulBerita: 'Google Buka Data Center Baru di Jakarta',
       tanggalRilis: '2025-07-15',
       gambarUrl:
@@ -104,7 +104,7 @@ export class Beritaservice {
 
     },
     {
-      id:9,
+      id:8,
       judulBerita: 'Peluncuran Jaringan 6G Pertama di Asia Tenggara',
       tanggalRilis: '2025-08-05',
       gambarUrl:

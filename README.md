@@ -5,7 +5,7 @@ Aplikasi ini terdiri dari minimal **6 halaman utama** berikut:
 ## 1. Halaman Login (10 poin)
 - Hanya user yang sudah teregister yang dapat masuk. ✅
 - Tidak perlu membuat halaman registrasi, data user dapat disiapkan dalam variable/array/object.✅
-- Jika user sudah pernah login, halaman login tidak akan muncul lagi kecuali user logout. ❌
+- Jika user sudah pernah login, halaman login tidak akan muncul lagi kecuali user logout. ❔(cookies/session gitu?)
 
 ## 2. Halaman Kategori (10 poin)
 - Menampilkan daftar kategori berita (misal: Ekonomi, Olahraga, Teknologi). ✅
@@ -14,10 +14,10 @@ Aplikasi ini terdiri dari minimal **6 halaman utama** berikut:
 
 ## 3. Halaman Daftar Berita (20 poin)
 - Setiap kategori memiliki minimal 2 judul berita. ✅
-- Satu berita dapat memiliki lebih dari 1 kategori. ❌
+- Satu berita dapat memiliki lebih dari 1 kategori. ✅
 - Setiap judul berita menampilkan foto berita. ✅
 - Tampilkan info rating (rata-rata dari semua rating yang masuk). ❌
-- Klik judul berita untuk masuk ke halaman baca berita. ❌
+- Klik judul berita untuk masuk ke halaman baca berita. ✅
 
 ## 4. Halaman Baca Berita (25 poin)
 - Menampilkan gambar-gambar halaman dari berita yang dibaca (minimal 4 gambar per berita). ❌

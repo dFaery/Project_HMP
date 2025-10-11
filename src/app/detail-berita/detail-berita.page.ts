@@ -16,14 +16,27 @@ interface Comment {
   standalone: false,
 })
 export class DetailBeritaPage implements OnInit {
-  berita: any;
   comments: Comment[] = [
-    { idBerita: 1, username: 'Username123', comment: 'Komentar dari Username123', avatar: 'assets/avatar1.png' },
-    { idBerita: 2, username: 'User456', comment: 'Saya setuju dengan kebijakan ini', avatar: 'assets/avatar2.png' },
+    { 
+      idBerita: 1, 
+      username: 'Username123', 
+      comment: 'Komentar dari Username123', 
+      avatar: 'assets/avatar1.png' 
+    },
+    { 
+      idBerita: 2, 
+      username: 'User456', 
+      comment: 'Saya setuju dengan kebijakan ini', 
+      avatar: 'assets/avatar2.png' 
+    },
   ];
+
+  berita: any;
   filteredComments: Comment[] = [];
   newComment: string = '';
   rating = 0;
+  indexBerita = 0;
+  semuaBerita: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -31,28 +44,29 @@ export class DetailBeritaPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    //  Ambil parameter id dari URL
-    const idParam = this.route.snapshot.paramMap.get('id');
-    const id = Number(idParam);
+    this.semuaBerita = [...this.beritaService.berita];
 
-    //  Cari berita berdasarkan id
-    this.berita = this.beritaService.berita.find((b) => b.id === id);
+    this.route.params.subscribe((params) => {
+      this.indexBerita = parseInt(params['index'], 10);
+      this.berita = this.semuaBerita[this.indexBerita];
 
-    if (!this.berita) {
-      console.warn('Berita tidak ditemukan untuk ID:', id);
-      return;
-    }
+      if (!this.berita) {
+        console.warn('Berita tidak ditemukan untuk index:', this.indexBerita);
+        return;
+      }
 
-    //  Filter komentar sesuai id berita
-    this.filteredComments = this.comments.filter((c) => c.idBerita === id);
+      this.filteredComments = this.comments.filter(
+        (c) => c.idBerita === this.indexBerita
+      );
 
-    console.log('Berita detail:', this.berita);
+      console.log('Berita detail:', this.berita);
+    });
   }
 
   addComment() {
     if (this.newComment.trim() !== '') {
       const newCmt = {
-        idBerita: this.berita.id,
+        idBerita: this.indexBerita,
         username: 'Saya',
         comment: this.newComment,
         avatar: 'assets/my-avatar.png',
