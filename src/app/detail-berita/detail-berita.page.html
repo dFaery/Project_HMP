@@ -1,47 +1,79 @@
-<ion-content [fullscreen]="true" class="news-page">
-  <div class="news-container">
-    <!-- Header -->
-    <div class="news-header">
-      <h2>{{ berita_trending[index].judulBerita }}</h2>
-      <p class="date">{{ berita_trending[index].tanggalRilis }}</p>
-      <div class="channel">       
-        <span>{{ berita_trending[index].penerbit }}</span>
-      </div>
-    </div>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/semua-berita"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detail Berita</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="addRating()">
+        <ion-icon slot="icon-only" name="heart-outline"></ion-icon>
+        <ion-badge color="danger" *ngIf="rating > 0">{{ rating }}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
-    <!-- Image -->
-    <div class="news-image">
-      <img [src]="berita_trending[index].gambarUrl" alt="news image" />
-    </div>
+<ion-content *ngIf="berita; else notFound" [fullscreen]="true">
+  <ion-card class="news-card">
+    <ion-card-header>
+      <ion-card-title>{{ berita.judulBerita }}</ion-card-title>
+      <ion-card-subtitle>
+        {{ berita.penerbit }} | {{ berita.tanggalRilis }}
+      </ion-card-subtitle>
+    </ion-card-header>
 
-    <!-- Content -->
-    <div class="news-content">
-      <p>
-        {{ berita_trending[index].isiBerita }}
+    <img [src]="berita.gambarUrl" alt="Gambar Berita" class="news-image-full" />
+
+    <ion-card-content>
+      <p class="news-content-text">
+        {{ berita.isiBerita || 'Konten berita belum tersedia.' }}
       </p>
-    </div>
+    </ion-card-content>
+  </ion-card>
 
-    <!-- Comments -->
-    <div class="comments-section">
-      <h3>Komentar</h3>
+  <ion-list lines="full" class="comments-section">
+    <ion-list-header>
+      <ion-label>Komentar</ion-label>
+    </ion-list-header>
 
-      <div *ngFor="let c of filteredComments" class="comment-item">
-        <img [src]="c.avatar" alt="avatar" class="avatar" />
-        <div class="comment-body">
-          <p class="username">{{ c.username }}</p>
-          <p class="text">{{ c.comment }}</p>
-        </div>
-      </div>
+    <ion-item *ngFor="let c of filteredComments" class="comment-item">
+      <ion-avatar slot="start">
+        <img [src]="c.avatar" alt="avatar" />
+      </ion-avatar>
 
-      <!-- Add new comment -->
-      <div class="add-comment">
-        <img src="assets/my-avatar.png" alt="my avatar" class="avatar" />
-        <ion-input
-          [(ngModel)]="newComment"
-          placeholder="Tambah komentar"
-        ></ion-input>
-        <ion-icon name="send-outline" (click)="addComment()"></ion-icon>
-      </div>
-    </div>
-  </div>
+      <ion-label>
+        <p class="username"><strong>{{ c.username }}</strong></p>
+        <p class="text">{{ c.comment }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-footer class="ion-no-border">
+    <ion-toolbar class="add-comment-toolbar">
+      <ion-avatar slot="start">
+        <img src="assets/my-avatar.png" alt="my avatar" />
+      </ion-avatar>
+      <ion-input
+        [(ngModel)]="newComment"
+        placeholder="Tambah komentar..."
+        class="comment-input"
+        #commentInput
+        (keyup.enter)="addComment()"
+      ></ion-input>
+      <ion-button slot="end" fill="clear" (click)="addComment()" [disabled]="newComment.trim() === ''">
+        <ion-icon name="send" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-toolbar>
+  </ion-footer>
 </ion-content>
+
+<ng-template #notFound>
+  <ion-content>
+    <div class="ion-padding">
+      <ion-text color="danger">
+        <h1>Berita tidak ditemukan.</h1>
+        <p>Mohon periksa kembali ID berita.</p>
+      </ion-text>
+    </div>
+  </ion-content>
+</ng-template>

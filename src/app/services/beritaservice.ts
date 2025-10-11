@@ -5,8 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class Beritaservice {
 
-  berita_trending = [
+  berita = [
     {
+      id:1,
       judulBerita:
         'Dedi Mulyadi Undang Kepala BGN Jabar Evaluasi Keracunan Massal MBG',
       tanggalRilis: '2025-05-29',
@@ -15,8 +16,10 @@ export class Beritaservice {
       penerbit: 'CNN Indonesia',
       rating: 5,
       jumlahReview: 29,
+      kategori: ['trending','economics'],
     },
     {
+      id:2,
       judulBerita: 'Indonesia Raih Juara Umum di ASEAN Games 2025',
       tanggalRilis: '2025-06-15',
       gambarUrl:
@@ -24,8 +27,11 @@ export class Beritaservice {
       penerbit: 'Kompas',
       rating: 4,
       jumlahReview: 120,
+      kategori: ['trending'],
+
     },
     {
+      id:3,
       judulBerita:
         'Pemilu Serentak 2025 Catat Partisipasi Tertinggi dalam 20 Tahun',
       tanggalRilis: '2025-07-01',
@@ -34,11 +40,11 @@ export class Beritaservice {
       penerbit: 'Detik News',
       rating: 4,
       jumlahReview: 78,
-    },
-  ];
+      kategori: ['trending','law'],
 
-  berita_economics = [
+    },
     {
+      id:4,
       judulBerita: 'Rupiah Menguat ke Rp14.800 per Dolar AS',
       tanggalRilis: '2025-06-10',
       gambarUrl:
@@ -46,8 +52,11 @@ export class Beritaservice {
       penerbit: 'Kontan',
       rating: 5,
       jumlahReview: 56,
+      kategori: ['economics'],
+
     },
     {
+      id:5,
       judulBerita: 'Pemerintah Umumkan Subsidi Baru untuk UMKM',
       tanggalRilis: '2025-07-03',
       gambarUrl:
@@ -55,8 +64,11 @@ export class Beritaservice {
       penerbit: 'Bisnis Indonesia',
       rating: 4,
       jumlahReview: 41,
+      kategori: ['economics'],
+
     },
     {
+      id:6,
       judulBerita: 'IHSG Ditutup Menguat 1,2% di Tengah Optimisme Pasar',
       tanggalRilis: '2025-08-12',
       gambarUrl:
@@ -64,11 +76,11 @@ export class Beritaservice {
       penerbit: 'CNBC Indonesia',
       rating: 4,
       jumlahReview: 34,
-    },
-  ];
+      kategori: ['economics'],
 
-  berita_technology = [
+    },
     {
+      id:7,
       judulBerita: 'Startup Indonesia Luncurkan AI Chatbot Mirip Manusia',
       tanggalRilis: '2025-06-25',
       gambarUrl:
@@ -76,8 +88,11 @@ export class Beritaservice {
       penerbit: 'Tech In Asia',
       rating: 5,
       jumlahReview: 67,
+      kategori: ['technology','trending'],
+
     },
     {
+      id:8,
       judulBerita: 'Google Buka Data Center Baru di Jakarta',
       tanggalRilis: '2025-07-15',
       gambarUrl:
@@ -85,8 +100,11 @@ export class Beritaservice {
       penerbit: 'Kompas Tekno',
       rating: 5,
       jumlahReview: 92,
+      kategori: ['technology'],
+
     },
     {
+      id:9,
       judulBerita: 'Peluncuran Jaringan 6G Pertama di Asia Tenggara',
       tanggalRilis: '2025-08-05',
       gambarUrl:
@@ -94,6 +112,8 @@ export class Beritaservice {
       penerbit: 'The Verge',
       rating: 4,
       jumlahReview: 50,
+      kategori: ['technology'],
+
     },
   ];
   

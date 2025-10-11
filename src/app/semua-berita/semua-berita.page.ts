@@ -1,5 +1,5 @@
 import { Beritaservice } from './../services/beritaservice';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FavoriteService, FavoriteNews } from '../services/favorite.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -9,32 +9,32 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./semua-berita.page.scss'],
   standalone: false,
 })
-export class SemuaBeritaPage {
+export class SemuaBeritaPage implements OnInit {
   constructor(
     private favoriteService: FavoriteService,
     private route: ActivatedRoute,
     public beritaservice: Beritaservice
   ) {}
 
+  berita: any;
   jenisTampilan: string = 'trending';
   beritaDicari: string = '';
+  semuaBerita: any[] = [];
+  hasilPencarian: any[] = [];
 
-  semuaBerita = [
-  ...this.beritaservice.berita_trending,
-  ...this.beritaservice.berita_economics,
-  ...this.beritaservice.berita_technology,
-  ];
+  ngOnInit() {
+    this.semuaBerita = this.beritaservice.berita;
+    console.log('Semua berita:', this.semuaBerita);
+  }
 
-  hasilPencarian = [...this.semuaBerita];
-
- cariBeritaByJudul() {
+  cariBeritaByJudul() {
     const lowerKeyword = this.beritaDicari.toLowerCase();
-    this.jenisTampilan = "search";
+    this.jenisTampilan = 'search';
     if (!lowerKeyword) {
       // kalau kosong, tampilkan semua berita
       this.hasilPencarian = [...this.semuaBerita];
     } else {
-      this.hasilPencarian = this.semuaBerita.filter(berita =>
+      this.hasilPencarian = this.semuaBerita.filter((berita) =>
         berita.judulBerita.toLowerCase().includes(lowerKeyword)
       );
     }
@@ -56,5 +56,13 @@ export class SemuaBeritaPage {
     this.toastMessage = 'Berita ditambahkan ke favorit';
     this.isToastOpen = true;
     this.favoriteService.addFavorite(favorite);
+  }
+
+  getBeritaByKategori(kategori: string) {
+    return this.semuaBerita.filter((b: any) =>
+      Array.isArray(b.kategori)
+        ? b.kategori.includes(kategori)
+        : b.kategori === kategori
+    );
   }
 }

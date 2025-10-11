@@ -20,9 +20,9 @@
 <ion-content [fullscreen]="true">
   <!-- TRENDING -->
   <ion-grid *ngIf="jenisTampilan === 'trending'">
-    <ion-row *ngFor="let beritas of chunkArray(beritaservice.berita_trending, 2); let i = index">
+    <ion-row *ngFor="let beritas of chunkArray(getBeritaByKategori('trending'), 2); let i = index">
       <ion-col size="6" *ngFor="let berita of beritas; let i2 = index" class="news-col">
-        <ion-card class="news-card" [routerLink]="['/detail-berita', (i*2)+i2]">
+        <ion-card class="news-card" [routerLink]="['/detail-berita', berita.id]">
           <ion-img [src]="berita.gambarUrl" alt="Gambar Berita"></ion-img>
 
           <ion-card-header>
@@ -52,9 +52,9 @@
 
   <!-- ECONOMICS -->
   <ion-grid *ngIf="jenisTampilan === 'economics'">
-    <ion-row *ngFor="let beritas of chunkArray(beritaservice.berita_economics, 2)">
-      <ion-col size="6" *ngFor="let berita of beritas" class="news-col">
-        <ion-card class="news-card">
+    <ion-row *ngFor="let beritas of chunkArray(getBeritaByKategori('economics'), 2); let i = index">
+      <ion-col size="6" *ngFor="let berita of beritas; let i2 = index" class="news-col">
+        <ion-card class="news-card" [routerLink]="['/detail-berita', berita.id]">
           <ion-img [src]="berita.gambarUrl" alt="Gambar Berita"></ion-img>
 
           <ion-card-header>
@@ -84,9 +84,9 @@
 
   <!-- TECHNOLOGY -->
   <ion-grid *ngIf="jenisTampilan === 'technology'">
-    <ion-row *ngFor="let beritas of chunkArray(beritaservice.berita_technology, 2)">
-      <ion-col size="6" *ngFor="let berita of beritas" class="news-col">
-        <ion-card class="news-card">
+    <ion-row *ngFor="let beritas of chunkArray(getBeritaByKategori('technology'), 2); let i = index">
+      <ion-col size="6" *ngFor="let berita of beritas; let i2 = index" class="news-col">
+        <ion-card class="news-card" [routerLink]="['/detail-berita', berita.id]">
           <ion-img [src]="berita.gambarUrl" alt="Gambar Berita"></ion-img>
 
           <ion-card-header>
