@@ -13,8 +13,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () =>
-      import('./rekomendasi-berita/rekomendasi-berita.module').then((m) => m.RekomendasiBeritaPageModule),
+    loadChildren: () => import('./rekomendasi-berita/rekomendasi-berita.module').then((m) => m.RekomendasiBeritaPageModule),
   },
   {
     path: 'berita-favorite',

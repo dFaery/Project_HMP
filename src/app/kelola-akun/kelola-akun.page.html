@@ -1,22 +1,22 @@
-<ion-content>
-  <ion-grid>
+<ion-content [fullscreen]="true">
+  <ion-grid *ngIf="userData; else loading">
     <ion-row>
       <!-- Sidebar kiri -->
       <ion-col size="12" size-md="3">
-        <div class="sidebar" *ngIf="userData">
+        <div class="sidebar">
           <div class="profile">
             <img [src]="userData.fotoProfil" class="avatar-preview" />
             <h3>{{ userData.namaDepan }} {{ userData.namaBelakang }}</h3>
             <p>{{ userData.jabatan || 'Cashier' }}</p>
           </div>
 
-          <ion-list lines="none">
-            <ion-item class="active">
+          <ion-list lines="full" class="sidebar-list">
+            <ion-item button class="active">
               <ion-icon name="person-circle-outline" slot="start"></ion-icon>
               <ion-label>Personal Information</ion-label>
             </ion-item>
 
-            <ion-item>
+            <ion-item button>
               <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
               <ion-label>Login & Password</ion-label>
             </ion-item>
@@ -42,11 +42,11 @@
             >
               <ion-item lines="none">
                 <ion-label>Male</ion-label>
-                <ion-radio slot="start" value="male"></ion-radio>
+                <ion-radio slot="start" value="Male"></ion-radio>
               </ion-item>
               <ion-item lines="none">
                 <ion-label>Female</ion-label>
-                <ion-radio slot="start" value="female"></ion-radio>
+                <ion-radio slot="start" value="Female"></ion-radio>
               </ion-item>
             </ion-radio-group>
 
@@ -79,7 +79,9 @@
                     <ion-input
                       label="Email"
                       type="email"
+                      [value]="akun?.accountEmail"
                       name="email"
+                      readonly
                     ></ion-input>
                     <ion-badge color="success" slot="end">Verified</ion-badge>
                   </ion-item>
@@ -129,12 +131,10 @@
                       [(ngModel)]="userData.lokasi"
                       name="location"
                     >
-                      <ion-select-option value="atlanta"
-                        >Atlanta, USA</ion-select-option
-                      >
-                      <ion-select-option value="newyork"
-                        >New York, USA</ion-select-option
-                      >
+                      <ion-select-option value="Jakarta, Indonesia">Jakarta, Indonesia</ion-select-option>
+                      <ion-select-option value="Bandung, Indonesia">Bandung, Indonesia</ion-select-option>
+                      <ion-select-option value="Surabaya, Indonesia">Surabaya, Indonesia</ion-select-option>
+                      <ion-select-option value="Medan, Indonesia">Medan, Indonesia</ion-select-option>
                     </ion-select>
                   </ion-item>
                 </ion-col>
@@ -169,4 +169,10 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <ng-template #loading>
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+      <ion-spinner></ion-spinner>
+    </div>
+  </ng-template>
 </ion-content>

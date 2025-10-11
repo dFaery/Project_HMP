@@ -2,17 +2,16 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Akunservice, Akun } from '../services/akunservice';
 import { AlertController } from '@ionic/angular';
-import { KelolaAkunPageRoutingModule } from './kelola-akun-routing.module';
 
 @Component({
   selector: 'app-kelola-akun',
   templateUrl: './kelola-akun.page.html',
   styleUrls: ['./kelola-akun.page.scss'],
-  standalone:false,
+  standalone: false,
 })
 export class KelolaAkunPage {
-  akun!: Akun; // seluruh data akun
-  userData!: Akun['biodata']; // bagian biodata saja
+  akun!: Akun;
+  userData!: Akun['biodata'];
 
   constructor(
     private router: Router,
@@ -20,24 +19,23 @@ export class KelolaAkunPage {
     private alertCtrl: AlertController
   ) {}
 
-  onFileSelected(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.userData.fotoProfil = reader.result as string;
-      };
-      reader.readAsDataURL(file);
+  ionViewWillEnter() {
+    this.loadUserData();
+  }
+
+  ionViewDidEnter() {
+    if (!this.userData) {
+      this.loadUserData();
     }
   }
 
-  ionViewWillEnter() {
+  private loadUserData() {
     const user = this.akunService.getCurrentUser();
     if (user) {
-      this.akun = user;
+      this.akun = { ...user };
       this.userData = { ...user.biodata };
     } else {
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/login', { replaceUrl: true });
     }
   }
 
@@ -51,7 +49,7 @@ export class KelolaAkunPage {
           text: 'Logout',
           handler: () => {
             this.akunService.logout();
-            this.router.navigateByUrl('/login');
+            this.router.navigateByUrl('/login', { replaceUrl: true });
           },
         },
       ],
@@ -60,7 +58,7 @@ export class KelolaAkunPage {
   }
 
   discardChanges() {
-    this.ionViewWillEnter(); // kembalikan ke data awal
+    this.loadUserData();
   }
 
   async saveChanges() {
