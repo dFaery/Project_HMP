@@ -3,11 +3,11 @@
     <ion-row>
       <!-- Sidebar kiri -->
       <ion-col size="12" size-md="3">
-        <div class="sidebar">
+        <div class="sidebar" *ngIf="userData">
           <div class="profile">
-            <img src="assets/avatar.png" alt="avatar" class="avatar" />
-            <h3>Roland Donald</h3>
-            <p>Cashier</p>
+            <img [src]="userData.fotoProfil" class="avatar-preview" />
+            <h3>{{ userData.namaDepan }} {{ userData.namaBelakang }}</h3>
+            <p>{{ userData.jabatan || 'Cashier' }}</p>
           </div>
 
           <ion-list lines="none">
@@ -15,11 +15,13 @@
               <ion-icon name="person-circle-outline" slot="start"></ion-icon>
               <ion-label>Personal Information</ion-label>
             </ion-item>
+
             <ion-item>
               <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
               <ion-label>Login & Password</ion-label>
             </ion-item>
-            <ion-item>
+
+            <ion-item button (click)="logout()">
               <ion-icon name="log-out-outline" slot="start"></ion-icon>
               <ion-label>Log Out</ion-label>
             </ion-item>
@@ -32,8 +34,12 @@
         <div class="form-container">
           <h2>Personal Information</h2>
 
-          <form>
-            <ion-radio-group value="male" class="gender-group">
+          <form (ngSubmit)="saveChanges()">
+            <ion-radio-group
+              [(ngModel)]="userData.gender"
+              name="gender"
+              class="gender-group"
+            >
               <ion-item lines="none">
                 <ion-label>Male</ion-label>
                 <ion-radio slot="start" value="male"></ion-radio>
@@ -48,23 +54,32 @@
               <ion-row>
                 <ion-col size="12" size-md="6">
                   <ion-item>
-                    <ion-input label="First Name" placeholder="Roland"></ion-input>
+                    <ion-input
+                      label="First Name"
+                      [(ngModel)]="userData.namaDepan"
+                      name="firstName"
+                    ></ion-input>
                   </ion-item>
                 </ion-col>
+
                 <ion-col size="12" size-md="6">
                   <ion-item>
-                    <ion-input label="Last Name" placeholder="Donald"></ion-input>
+                    <ion-input
+                      label="Last Name"
+                      [(ngModel)]="userData.namaBelakang"
+                      name="lastName"
+                    ></ion-input>
                   </ion-item>
                 </ion-col>
               </ion-row>
 
               <ion-row>
-                <ion-col size="12" size-md="12">
+                <ion-col size="12">
                   <ion-item>
                     <ion-input
                       label="Email"
                       type="email"
-                      value="rolandDonald@gmail.com"
+                      name="email"
                     ></ion-input>
                     <ion-badge color="success" slot="end">Verified</ion-badge>
                   </ion-item>
@@ -76,7 +91,8 @@
                   <ion-item>
                     <ion-input
                       label="Address"
-                      placeholder="3605 Parker Rd."
+                      [(ngModel)]="userData.alamat"
+                      name="address"
                     ></ion-input>
                   </ion-item>
                 </ion-col>
@@ -87,15 +103,19 @@
                   <ion-item>
                     <ion-input
                       label="Phone Number"
-                      placeholder="(405) 555-0128"
+                      [(ngModel)]="userData.telepon"
+                      name="phone"
                     ></ion-input>
                   </ion-item>
                 </ion-col>
+
                 <ion-col size="12" size-md="6">
                   <ion-item>
                     <ion-input
                       label="Date of Birth"
                       type="date"
+                      [(ngModel)]="userData.tanggalLahir"
+                      name="dob"
                     ></ion-input>
                   </ion-item>
                 </ion-col>
@@ -106,24 +126,43 @@
                   <ion-item>
                     <ion-select
                       label="Location"
-                      placeholder="Atlanta, USA"
+                      [(ngModel)]="userData.lokasi"
+                      name="location"
                     >
-                      <ion-select-option value="atlanta">Atlanta, USA</ion-select-option>
-                      <ion-select-option value="newyork">New York, USA</ion-select-option>
+                      <ion-select-option value="atlanta"
+                        >Atlanta, USA</ion-select-option
+                      >
+                      <ion-select-option value="newyork"
+                        >New York, USA</ion-select-option
+                      >
                     </ion-select>
                   </ion-item>
                 </ion-col>
+
                 <ion-col size="12" size-md="6">
                   <ion-item>
-                    <ion-input label="Postal Code" placeholder="30301"></ion-input>
+                    <ion-input
+                      label="Postal Code"
+                      [(ngModel)]="userData.kodePos"
+                      name="postal"
+                    ></ion-input>
                   </ion-item>
                 </ion-col>
               </ion-row>
             </ion-grid>
 
             <div class="action-buttons">
-              <ion-button fill="outline" color="danger">Discard Changes</ion-button>
-              <ion-button expand="block" color="warning">Save Changes</ion-button>
+              <ion-button
+                fill="outline"
+                color="danger"
+                type="button"
+                (click)="discardChanges()"
+              >
+                Discard Changes
+              </ion-button>
+              <ion-button expand="block" color="warning" type="submit">
+                Save Changes
+              </ion-button>
             </div>
           </form>
         </div>

@@ -35,7 +35,7 @@ export class Akunservice {
         tanggalLahir: '2001-04-25',
         lokasi: 'Bandung, Indonesia',
         kodePos: '40123',
-        fotoProfil: 'assets/avatar-thia.png',
+        fotoProfil: 'assets/avatar-thia.jpeg',
       },
     },
     {
@@ -51,7 +51,7 @@ export class Akunservice {
         tanggalLahir: '1999-09-10',
         lokasi: 'Jakarta, Indonesia',
         kodePos: '10210',
-        fotoProfil: 'assets/avatar-hans.png',
+        fotoProfil: 'assets/avatar-hans.jpeg',
       },
     },
     {
@@ -67,7 +67,7 @@ export class Akunservice {
         tanggalLahir: '2000-02-12',
         lokasi: 'Surabaya, Indonesia',
         kodePos: '60234',
-        fotoProfil: 'assets/avatar-kevin.png',
+        fotoProfil: 'assets/avatar-kevin.jpeg',
       },
     },
     {
@@ -83,7 +83,7 @@ export class Akunservice {
         tanggalLahir: '1998-07-20',
         lokasi: 'Medan, Indonesia',
         kodePos: '20111',
-        fotoProfil: 'assets/avatar-hendra.png',
+        fotoProfil: 'assets/avatar-hendra.jpeg',
       },
     },
   ];
@@ -92,7 +92,7 @@ export class Akunservice {
 
   constructor() {}
 
-  /** Cari akun berdasarkan email & password */
+  /** Login */
   login(email: string, pass: string): Akun | null {
     const found = this.accounts.find(
       (acc) => acc.accountEmail === email && acc.accountPass === pass
@@ -105,7 +105,7 @@ export class Akunservice {
     return null;
   }
 
-  /** Mengambil data akun yang sedang login */
+  /** Ambil akun yang sedang login */
   getCurrentUser(): Akun | null {
     if (this.loggedInUser) return this.loggedInUser;
 
@@ -117,9 +117,26 @@ export class Akunservice {
     return null;
   }
 
-  /** Logout user */
+  /** Logout */
   logout(): void {
     this.loggedInUser = null;
     localStorage.removeItem('loggedUser');
+  }
+
+  /** Update data user dan simpan ke localStorage */
+  updateUser(updated: Akun): void {
+    // Update di array accounts
+    const index = this.accounts.findIndex(
+      (acc) => acc.accountEmail === updated.accountEmail
+    );
+    if (index > -1) {
+      this.accounts[index] = updated;
+    }
+
+    // Update di memori
+    this.loggedInUser = updated;
+
+    // Simpan ke localStorage
+    localStorage.setItem('loggedUser', JSON.stringify(updated));
   }
 }
