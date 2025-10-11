@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 export interface FavoriteNews {
+  id: number;
   judulBerita: string;
   tanggalRilis: string;
   gambarUrl: string;
