@@ -6,7 +6,8 @@
 
 
 <ion-content [fullscreen]="true">
-  <ion-card class="section-listberita" *ngFor="let fav of favorites">
+  <div *ngFor="let fav of favorites" style="position: relative; margin-bottom: 10px;">
+  <ion-card class="section-listberita" [routerLink]="['/detail-berita', fav.id]">
     <div style="display: flex; padding: 10px; gap: 10px; background-color: #ffffff;">
 
       <div style="flex: 2; display: flex; align-items: center">
@@ -23,16 +24,26 @@
           <ion-icon name="star" size="small" color="warning"></ion-icon>
           <span>{{ fav.rating }} ({{ fav.jumlahReview }} reviews)</span>
         </div>
-      </div>
-
-      <div style="flex: 1; display: flex; align-items: center">
-        <ion-button fill="outline" size="small" (click)="removeFavorite(fav)">
-        <ion-icon name="trash-outline"></ion-icon>
-        </ion-button>
-      </div>
-      
+      </div>    
     </div>
   </ion-card>
+   <ion-button 
+      fill="outline"
+      size="small"
+      color="danger"
+      (click)="removeFavorite(fav)"
+      style="
+        position: absolute;
+        bottom: 4px;
+        right: 16px;
+        height: 32px;
+        width: 32px;
+        --padding-start: 0;
+        --padding-end: 0;
+      ">
+      <ion-icon name="trash-outline"></ion-icon>
+    </ion-button>
+  </div>
 </ion-content>
 
 <ion-toast

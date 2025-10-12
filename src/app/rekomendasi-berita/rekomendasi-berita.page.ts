@@ -11,15 +11,17 @@ export class RekomendasiBeritaPage {
   favorites: FavoriteNews[] = [];
 
   berita: FavoriteNews[] = [{
-    judulBerita: "Indonesia's Central bank surprises with 25bps rate cut",
-    tanggalRilis: '2025-08-06',
+    id:6,
+    judulBerita: 'Startup Indonesia Luncurkan AI Chatbot Mirip Manusia',
+    tanggalRilis: '2025-06-25',
     gambarUrl:
-      'https://asset.kompas.com/crops/YQrcfXdm304xoWSOn2yxjOxxFyQ=/0x168:5500x3834/750x500/data/photo/2022/01/11/61dd7a1b1e57e.jpg',
-    penerbit: 'CNN Indonesia',
-    rating: 4.9,
-    jumlahReview: 264,
+      'https://img.antaranews.com/cache/1200x800/2017/09/20170915rina.jpg.webp',
+    penerbit: 'Tech In Asia',
+    rating: 5,
+    jumlahReview: 67,
   },
   {
+    id: 1,
     judulBerita: 'Indonesia Raih Juara Umum di ASEAN Games 2025',
     tanggalRilis: '2025-06-15',
     gambarUrl:
@@ -29,6 +31,7 @@ export class RekomendasiBeritaPage {
     jumlahReview: 120,
   },
   {
+    id: 0,
     judulBerita:
       'Dedi Mulyadi Undang Kepala BGN Jabar Evaluasi Keracunan Massal MBG',
     tanggalRilis: '2025-05-29',
