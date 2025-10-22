@@ -21,10 +21,12 @@ export class SemuaBeritaPage implements OnInit {
   beritaDicari: string = '';
   semuaBerita: any[] = [];
   hasilPencarian: any[] = [];
+  rataRataRatings = 0;
 
   ngOnInit() {
     this.semuaBerita = this.beritaservice.berita;
     console.log('Semua berita:', this.semuaBerita);
+    this.rataRataRatings = this.beritaservice.meanRatings;
   }
 
   cariBeritaByJudul() {
@@ -64,5 +66,10 @@ export class SemuaBeritaPage implements OnInit {
         ? b.kategori.includes(kategori)
         : b.kategori === kategori
     );
+  }
+
+  beriRating(id: number, nilai: number) {
+    this.beritaservice.updateRating(id, nilai);
+    this.rataRataRatings = this.beritaservice.meanRatings;
   }
 }

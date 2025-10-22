@@ -31,12 +31,18 @@
     <div class="news-content">
       <p>{{ berita.isiBerita || 'Konten berita belum tersedia.' }}</p>
     </div>
-    <ion-buttons slot="end">
-      <ion-button size="large" (click)="addRating()">
-        <ion-icon slot="start" name="heart-outline" size="large"></ion-icon>
-        <ion-badge color="none" *ngIf="rating > 0">{{ rating }}</ion-badge>
-      </ion-button>
-    </ion-buttons>
+    <!-- Button Rating Berita -->
+    <div class="rating-stars">
+
+      <ion-icon
+        *ngFor="let jum of [1,2,3,4,5]"
+        [name]="jum <= berita.rating ? 'star' : 'star-outline'"
+        color="primary"
+        size="medium"
+        (click)="beriRating(jum)"
+      ></ion-icon>
+      
+    </div>
 
     <!-- Section Komentar -->
     <div class="comments-section">
@@ -46,7 +52,7 @@
         <div *ngFor="let c of filteredComments" class="comment-item">
           <img [src]="c.avatar" alt="avatar" class="avatar" />
           <div class="comment-body">
-            <div class="username">{{ c.username }}</div>
+            <div class="username">{{ userData.namaDepan }} {{ userData.namaBelakang }}</div>
             <div class="text">{{ c.comment }}</div>
           </div>
         </div>
@@ -59,7 +65,7 @@
 
       <!-- Input Komentar -->
       <div class="add-comment">
-        <img src="assets/my-avatar.png" alt="my avatar" class="avatar" />
+         <img [src]="userData?.fotoProfil" alt="foto user" class="avatar" />
         <ion-input
           [(ngModel)]="newComment"
           placeholder="Tambah komentar..."
