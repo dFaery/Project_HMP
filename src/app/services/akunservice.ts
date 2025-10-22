@@ -139,4 +139,10 @@ export class Akunservice {
     // Simpan ke localStorage
     localStorage.setItem('loggedUser', JSON.stringify(updated));
   }
+
+  /** Cek apakah ada user yang sedang login */
+  isUserLoggedIn(): boolean {
+    return this.getCurrentUser() !== null;
+  }
+
 }

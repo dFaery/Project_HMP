@@ -35,6 +35,10 @@ export class LoginPage {
   }
 
   ionViewWillEnter() {
+    if (this.akunService.isUserLoggedIn()) {
+      this.navCtrl.navigateRoot('/home');
+      return;
+    }
     document.body.classList.add('page-login');
   }
 
