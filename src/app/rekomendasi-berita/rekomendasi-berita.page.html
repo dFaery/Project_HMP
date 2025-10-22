@@ -6,7 +6,9 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div *ngFor="let berita of berita" style="position: relative; margin-bottom: 10px;">
+<ng-container *ngFor="let berita of berita">
+  
+  <div style="position: relative; margin-bottom: 10px;" *ngIf="berita.rekomendasi">
     <ion-card class="section-listberita" [routerLink]="['/detail-berita', berita.id]">
       <div style="display: flex; padding: 10px; gap: 10px; background-color: #ffffff;">
         <!-- Image section -->
@@ -40,6 +42,9 @@
       <ion-icon name="bookmark-outline"></ion-icon>
     </ion-button>
   </div>
+
+</ng-container>
+
 </ion-content>
 
 <ion-toast [isOpen]="isToastOpen" message="{{ toastMessage }}" duration="1000" (didDismiss)="isToastOpen = false">

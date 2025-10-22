@@ -40,7 +40,7 @@
     <!-- Button Rating Berita -->
     <div class="rating-stars">
 
-      <ion-icon *ngFor="let jum of [1,2,3,4,5]" [name]="jum <= berita.rating ? 'star' : 'star-outline'" color="primary"
+      <ion-icon *ngFor="let jum of [1,2,3,4,5]" [name]="jum <= berita.rateUser ? 'star' : 'star-outline'" color="primary"
         size="medium" (click)="beriRating(jum)"></ion-icon>
 
     </div>

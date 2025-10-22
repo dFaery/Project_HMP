@@ -19,9 +19,11 @@ export class Beritaservice {
       ],
       isiBerita: 'Kasus keracunan massal yang dialami lebih dari seribu siswa di Kabupaten Bandung Barat (KBB) akibat makanan dalam program Makan Bergizi Gratis (MBG) menuai perhatian publik nasional. Insiden ini menimbulkan pertanyaan serius terkait standar penyediaan, pengolahan, dan distribusi makanan di sekolah. Gubernur Jawa Barat, Dedi Mulyadi, menyatakan program MBG sementara dihentikan untuk dilakukan evaluasi menyeluruh.',
       penerbit: 'CNN Indonesia',
-      rating: 0,
-      jumlahReview: 0,
+      rating: 4.5,
+      rateUser: 0,
+      jumlahReview: 2,
       kategori: ['trending', 'economics'],
+      rekomendasi : true,
     },
     {
       id: 1,
@@ -37,8 +39,10 @@ export class Beritaservice {
       isiBerita: 'Pemerintah memastikan bahwa keberhasilan kontingen Indonesia yang sukses meraih juara umum di ajang ASEAN Para Games 2023 akan mendapatkan apresiasi yang sama dengan atlet SEA Games 2023. Hal ini disampaikan langsung oleh Staf Khusus Presiden Bidang Sosial, Angkie Yudistia, saat memberikan keterangan dalam sesi konferensi pers secara daring pada Jumat.',
       penerbit: 'Kompas',
       rating: 0,
+      rateUser: 0,
       jumlahReview: 0,
       kategori: ['trending'],
+      rekomendasi : true,
     },
     {
       id: 2,
@@ -55,8 +59,10 @@ export class Beritaservice {
       isiBerita: 'Kurang dari sepekan menjelang pemungutan suara, jajak pendapat terakhir sejumlah lembaga survei menyebut posisi Prabowo Subianto dan Gibran Rakabuming Raka di peringkat satu. Namun, pengamat mengingatkan masyarakat bahwa angka itu tidak mutlak.',
       penerbit: 'Detik News',
       rating: 0,
+      rateUser: 0,
       jumlahReview: 0,
       kategori: ['trending', 'law'],
+      rekomendasi : false,
     },
     {
       id: 3,
@@ -72,8 +78,10 @@ export class Beritaservice {
       isiBerita: 'Gubernur Bank Indonesia Perry Warjiyo menuturkan, mata uang rupiah diperdagangkan dengan kurs beli Rp 13.855 per USD, sedangkan kurs jual tercatat Rp 13.960 per USD. ’’Alhamdulillah sudah tembus di bawah Rp 14 ribu. Dalam pandangan kami masih undervalued. Ke depan masih berpotensi menguat,” paparnya dalam konferensi pers virtual kemarin.',
       penerbit: 'Kontan',
       rating: 0,
+      rateUser: 0,
       jumlahReview: 0,
       kategori: ['economics'],
+      rekomendasi : false,
     },
     {
       id: 4,
@@ -89,8 +97,10 @@ export class Beritaservice {
       isiBerita: 'Dengan jumlah UMKM yang cukup banyak, dapat dikatakan UMKM menjadi tulang punggung perekonomian Kepulauan Riau apalagi di masa-masa pembatasan-pembatasan kegiatan masyarakat. Untuk itu demi mempertahankan eksistensi UMKM di Kepulauan Riau di masa pandemi, Gubernur Ansar mengeluarkan kebijakan strategis dalam wujud bantuan modal bagi UMKM dengan bunga 0 persen untuk mendapatkan fasilitas pembiayaan dari PT. Bank Riau Kepri. ',
       penerbit: 'Bisnis Indonesia',
       rating: 0,
+      rateUser: 0,
       jumlahReview: 0,
       kategori: ['economics'],
+      rekomendasi : false,
     },
     {
       id: 5,
@@ -106,8 +116,10 @@ export class Beritaservice {
       isiBerita: 'IHSG ditutup menguat 173,32 poin atau 2,19 persen ke posisi 8.088,98 Sementara kelompok 45 saham unggulan atau indeks LQ45 naik 23,97 poin atau 3,10 persen ke posisi 796,31.',
       penerbit: 'CNBC Indonesia',
       rating: 0,
+      rateUser: 0,
       jumlahReview: 0,
       kategori: ['economics'],
+      rekomendasi : false,
     },
     {
       id: 6,
@@ -123,8 +135,10 @@ export class Beritaservice {
       isiBerita: 'Microsoft Indonesia bekerja sama dengan LINE Indonesia membawa chatbot berbasis kecerdasan buatan bernama Rinna ke Indonesia. (HO/ Microsoft)',
       penerbit: 'Tech In Asia',
       rating: 0,
+      rateUser: 0,
       jumlahReview: 0,
       kategori: ['technology', 'trending'],
+      rekomendasi : true,
     },
     {
       id: 7,
@@ -140,8 +154,10 @@ export class Beritaservice {
       isiBerita: 'Google data center, dari namanya sudah pasti bisa menebak tempat seperti apa ini. Ya, Google Data Center jadi tempat untuk menyimpan jutaan data yang ada di muka bumi ini seperti permintaan pencarian di internet, file video youtube, data email sampai menyimpan akun-akun yang biasa digunakan untuk keperluan bisnis dan media sosial.',
       penerbit: 'Kompas Tekno',
       rating: 0,
+      rateUser: 0,
       jumlahReview: 0,
       kategori: ['technology'],
+      rekomendasi : false,
     },
     {
       id: 8,
@@ -157,36 +173,33 @@ export class Beritaservice {
       isiBerita: 'China dilaporkan telah melakukan peluncuran satelit baru untuk uji coba jaringan 6G. Langkah ini menjadi pendorong kemajuan lebih jauh dalam hal kecepatan telekomunikasi, mengingat jaringan 5G masih tergolong baru dan belum tersebar secara merata.',
       penerbit: 'The Verge',
       rating: 0,
+      rateUser: 0,
       jumlahReview: 0,
       kategori: ['technology'],
+      rekomendasi : false,
     },
   ];
 
   constructor() {
-    this.meanRatings = this.hitungRataRataRatings();
-  }
-
-  meanRatings: number = 0;
-
-  // Fungsi untuk menghitung rata-rata rating
-  hitungRataRataRatings(): number {
-    if (this.berita.length === 0) return 0;
-
-    const totalRating = this.berita.reduce((sum, item) => sum + item.rating, 0);
-    const rataRata = totalRating / this.berita.length;
-
-    return Math.round(rataRata * 10) / 10;
   }
 
   updateRating(id: number, ratingBaru: number): void {
     const berita = this.berita.find((b) => b.id === id);
     if (!berita) return;
 
-    const totalSebelumnya = berita.rating * berita.jumlahReview;
-    berita.jumlahReview += 1;
-    berita.rating = (totalSebelumnya + ratingBaru) / berita.jumlahReview;
+    var totalSebelumnya;
+    
+    if (berita.rateUser == 0){
+      totalSebelumnya = berita.rating * berita.jumlahReview;
+      berita.jumlahReview += 1;
+      berita.rating = (totalSebelumnya + ratingBaru) / berita.jumlahReview;
+    }
+    else {
+      totalSebelumnya = (berita.rating * berita.jumlahReview) - berita.rateUser + ratingBaru;
+      berita.rating = (totalSebelumnya) / berita.jumlahReview;
+    }
+
     berita.rating = Math.round(berita.rating * 10) / 10;
     
-    this.meanRatings = this.hitungRataRataRatings();
   }
 }

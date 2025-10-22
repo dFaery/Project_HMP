@@ -25,7 +25,6 @@ export class DetailBeritaPage implements OnInit {
   berita: any;
   filteredComments: Comment[] = [];
   newComment: string = '';
-  rating: number = 0;
   indexBerita = 0;
   semuaBerita: any[] = [];
   id!: number;
@@ -84,17 +83,14 @@ export class DetailBeritaPage implements OnInit {
     return this.commentServices.getCommentsByBeritaId(this.id);
   }
 
-  addRating() {
-    if (!this.berita) return;
-    const nilai = 5;
-    this.beritaService.updateRating(this.berita.id, nilai);
-    this.rating = nilai;
-  }
-
   beriRating(nilai: number) {
     if (!this.berita) return;
-    this.rating = nilai;
-    this.beritaService.updateRating(this.berita.id, nilai);
+    if(this.beritaService.berita[this.id].rateUser != nilai){
+      this.beritaService.updateRating(this.berita.id, nilai);
+    }
+    
+    this.beritaService.berita[this.id].rateUser = nilai;
+
   }
 
   private loadUserData() {

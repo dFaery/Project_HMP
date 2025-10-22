@@ -21,11 +21,8 @@
 <ion-content [fullscreen]="true">
   <!-- TRENDING -->
   <ion-grid *ngIf="jenisTampilan === 'trending'">
-
     <ion-row *ngFor="let beritas of chunkArray(getBeritaByKategori('trending'), 2); let i = index">
-
       <ion-col size="6" *ngFor="let berita of beritas; let i2 = index" class="news-col">
-
         <ion-card class="news-card" [routerLink]="['/detail-berita', berita.id]">
           <ion-img [src]="berita.gambarUrl" alt="Gambar Berita"></ion-img>
 
@@ -156,10 +153,11 @@
     </ion-row>
   </ion-grid>
 
+  <!-- SEARCH -->
   <ion-grid *ngIf="jenisTampilan === 'search'">
-    <ion-row *ngFor="let beritas of chunkArray(hasilPencarian, 2)">
-      <ion-col size="6" *ngFor="let berita of beritas" class="news-col">
-        <ion-card class="news-card">
+    <ion-row *ngFor="let beritas of chunkArray(hasilPencarian, 2); let i = index">
+      <ion-col size="6" *ngFor="let berita of beritas; let i2 = index" class="news-col">
+        <ion-card class="news-card" [routerLink]="['/detail-berita', berita.id]">
           <ion-img [src]="berita.gambarUrl" alt="Gambar Berita"></ion-img>
 
           <ion-card-header>
@@ -177,12 +175,9 @@
               </ion-label>
             </ion-item>
 
-            <!-- <ion-button fill="outline" size="small" expand="block" (click)="addToFavorite(berita)">
-              <ion-icon name="bookmark-outline" slot="start"></ion-icon>
-              Tambah ke Favorit
-            </ion-button> -->
           </ion-card-content>
         </ion-card>
+        
         <ion-button fill="outline" color="primary" (click)="addToFavorite(berita);" style="
             position: absolute;
             bottom: 0;

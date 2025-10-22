@@ -17,13 +17,13 @@ export class CommentServices {
       idBerita: 1,
       username: 'Username123',
       comment: 'Komentar dari Username123',
-      avatar: 'assets/avatar1.png',
+      avatar: 'assets/avatar-hans.jpeg',
     },
     {
       idBerita: 2,
       username: 'User456',
       comment: 'Saya setuju dengan kebijakan ini',
-      avatar: 'assets/avatar2.png',
+      avatar: 'assets/avatar-hans.jpeg',
     },
   ];
 
