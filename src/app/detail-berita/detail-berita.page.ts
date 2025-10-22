@@ -45,7 +45,7 @@ export class DetailBeritaPage implements OnInit {
     this.loadUserData();
 
     this.route.params.subscribe((params) => {
-      this.id = parseInt(params['index'], 10);
+      this.id = parseInt(params['id'], 10);
       this.berita = this.semuaBerita[this.id];
 
       if (!this.berita) {
@@ -58,13 +58,7 @@ export class DetailBeritaPage implements OnInit {
       );
 
       console.log('Berita detail:', this.berita);
-    });
-
-    this.id = Number(this.route.snapshot.paramMap.get('id'));
-    this.berita = this.beritaService.berita.find((b) => b.id === this.id);
-    if (!this.berita) {
-      console.warn('Berita tidak ditemukan untuk ID:', this.id);
-    }
+    });    
   }
 
   addComment() {

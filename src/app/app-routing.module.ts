@@ -32,7 +32,7 @@ const routes: Routes = [
     loadChildren: () => import('./semua-berita/semua-berita.module').then( m => m.SemuaBeritaPageModule)
   },
   {
-    path: 'detail-berita/:index',
+    path: 'detail-berita/:id',
     loadChildren: () => import('./detail-berita/detail-berita.module').then( m => m.DetailBeritaPageModule)
   },
 

@@ -37,14 +37,14 @@
 
     <!-- Section Komentar -->
     <div class="comments-section">
-      <h3>Komentar ({{ countComments(id) }})</h3>
+      <h3>Komentar ({{ filteredComments.length }})</h3>
 
       <div class="comment-list">
         <div *ngFor="let c of filteredComments" class="comment-item">
           <img [src]="c.avatar" alt="avatar" class="avatar" />
           <div class="comment-body">
-            <div class="username">{{ c.username }}</div>
-            <p class="text">{{ c.comment }}</p>
+            <div class="username">{{ userData.namaDepan }} {{ userData.namaBelakang }}</div>
+            <div class="text">{{ c.comment }}</div>
           </div>
         </div>
 

@@ -33,7 +33,7 @@ export class SemuaBeritaPage implements OnInit {
     const lowerKeyword = this.beritaDicari.toLowerCase();
     this.jenisTampilan = 'search';
     if (!lowerKeyword) {
-      // kalau kosong, tampilkan semua berita
+      // kalau kosong, show semua berita
       this.hasilPencarian = [...this.semuaBerita];
     } else {
       this.hasilPencarian = this.semuaBerita.filter((berita) =>
