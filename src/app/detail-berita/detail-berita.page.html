@@ -23,6 +23,16 @@
       <img [src]="berita.gambarUrl" alt="Gambar Berita" />
     </div>
 
+    <!-- Gambar Tambahan -->
+    <div class="news-gallery" *ngIf="berita.gambarTambahan && berita.gambarTambahan.length > 0">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4" *ngFor="let img of berita.gambarTambahan">
+            <img [src]="img" alt="Gambar Tambahan" class="gallery-img" />
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
     <!-- Konten Berita -->
     <div class="news-content">
       <p>{{ berita.isiBerita || 'Konten berita belum tersedia.' }}</p>
