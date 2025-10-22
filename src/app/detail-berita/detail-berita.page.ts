@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Beritaservice } from '../services/beritaservice';
 import { Akunservice, Akun } from '../services/akunservice';
+import { CommentServices } from '../services/comment-services';
 import { Router } from '@angular/router';
-
 
 interface Comment {
   idBerita: number;
@@ -21,25 +21,11 @@ interface Comment {
 export class DetailBeritaPage implements OnInit {
   akun!: Akun;
   userData!: Akun['biodata'];
-  comments: Comment[] = [
-    {
-      idBerita: 1,
-      username: 'Username123',
-      comment: 'Komentar dari Username123',
-      avatar: 'assets/avatar1.png',
-    },
-    {
-      idBerita: 2,
-      username: 'User456',
-      comment: 'Saya setuju dengan kebijakan ini',
-      avatar: 'assets/avatar2.png',
-    },
-  ];
 
   berita: any;
   filteredComments: Comment[] = [];
   newComment: string = '';
-  rating:number = 0;
+  rating: number = 0;
   indexBerita = 0;
   semuaBerita: any[] = [];
   id!: number;
@@ -48,24 +34,27 @@ export class DetailBeritaPage implements OnInit {
     private route: ActivatedRoute,
     private akunService: Akunservice,
     private beritaService: Beritaservice,
-    private router: Router
-
+    private router: Router,
+    private commentServices: CommentServices
   ) {}
 
   ngOnInit() {
+    console.log('indexBerita:', this.indexBerita);
+    console.log('id:', this.id);
     this.semuaBerita = [...this.beritaService.berita];
+    this.loadUserData();
 
     this.route.params.subscribe((params) => {
-      this.indexBerita = parseInt(params['index'], 10);
-      this.berita = this.semuaBerita[this.indexBerita];
+      this.id = parseInt(params['index'], 10);
+      this.berita = this.semuaBerita[this.id];
 
       if (!this.berita) {
-        console.warn('Berita tidak ditemukan untuk index:', this.indexBerita);
+        console.warn('Berita tidak ditemukan untuk index:', this.id);
         return;
       }
 
-      this.filteredComments = this.comments.filter(
-        (c) => c.idBerita === this.indexBerita
+      this.filteredComments = this.commentServices.getCommentsByBeritaId(
+        this.id
       );
 
       console.log('Berita detail:', this.berita);
@@ -81,16 +70,24 @@ export class DetailBeritaPage implements OnInit {
   addComment() {
     if (this.newComment.trim() !== '') {
       const newCmt = {
-        idBerita: this.indexBerita,
-        username: 'Saya',
+        idBerita: this.id,
+        username: `${this.userData.namaDepan} ${this.userData.namaBelakang}`,
         comment: this.newComment,
-        avatar: 'assets/my-avatar.png',
+        avatar: this.userData.fotoProfil || 'assets/my-avatar.png',
       };
 
-      this.comments.push(newCmt);
+      this.commentServices.addComment(newCmt);
       this.filteredComments.push(newCmt);
       this.newComment = '';
     }
+  }
+
+  countComments(idBerita: number): number {
+    return this.commentServices.getCommentCountByBeritaId(this.id);
+  }
+
+  getComments(idBerita: number): Comment[] {
+    return this.commentServices.getCommentsByBeritaId(this.id);
   }
 
   addRating() {
@@ -106,7 +103,7 @@ export class DetailBeritaPage implements OnInit {
     this.beritaService.updateRating(this.berita.id, nilai);
   }
 
-    private loadUserData() {
+  private loadUserData() {
     const user = this.akunService.getCurrentUser();
     if (user) {
       this.akun = { ...user };
