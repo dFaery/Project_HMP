@@ -19,7 +19,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <!-- TRENDING -->
   <ion-grid *ngIf="jenisTampilan === 'trending'">
     <ion-row *ngFor="let beritas of chunkArray(getBeritaByKategori('trending'), 2); let i = index">
       <ion-col size="6" *ngFor="let berita of beritas; let i2 = index" class="news-col">
@@ -76,7 +75,6 @@
 
   </ion-grid>
 
-  <!-- ECONOMICS -->
   <ion-grid *ngIf="jenisTampilan === 'economics'">
     <ion-row *ngFor="let beritas of chunkArray(getBeritaByKategori('economics'), 2); let i = index">
       <ion-col size="6" *ngFor="let berita of beritas; let i2 = index" class="news-col">
@@ -131,7 +129,6 @@
     </ion-row>
   </ion-grid>
 
-  <!-- TECHNOLOGY -->
   <ion-grid *ngIf="jenisTampilan === 'technology'">
     <ion-row *ngFor="let beritas of chunkArray(getBeritaByKategori('technology'), 2); let i = index">
       <ion-col size="6" *ngFor="let berita of beritas; let i2 = index" class="news-col">
@@ -186,7 +183,6 @@
     </ion-row>
   </ion-grid>
 
-  <!-- SEARCH -->
   <ion-grid *ngIf="jenisTampilan === 'search'">
     <ion-row *ngFor="let beritas of chunkArray(hasilPencarian, 2); let i = index">
       <ion-col size="6" *ngFor="let berita of beritas; let i2 = index" class="news-col">
@@ -247,6 +243,5 @@
 
 </ion-content>
 
-<!-- TOAST -->
 <ion-toast [isOpen]="isToastOpen" [message]="toastMessage" duration="1000" (didDismiss)="isToastOpen = false">
 </ion-toast>

@@ -9,7 +9,7 @@
 
 <ion-content *ngIf="berita; else notFound" [fullscreen]="true" class="news-page">
   <div class="news-container">
-    <!-- Header Berita -->
+
     <div class="news-header">
       <h2>{{ berita.judulBerita }}</h2>
       <div class="date">{{ berita.tanggalRilis }}</div>
@@ -18,12 +18,12 @@
       </div>
     </div>
 
-    <!-- Gambar Berita -->
+
     <div class="news-image">
       <img [src]="berita.gambarUrl" alt="Gambar Berita" />
     </div>
 
-    <!-- Gambar Tambahan -->
+
     <div class="news-gallery" *ngIf="berita.gambarTambahan && berita.gambarTambahan.length > 0">
       <ion-grid>
         <ion-row>
@@ -33,11 +33,11 @@
         </ion-row>
       </ion-grid>
     </div>
-    <!-- Konten Berita -->
+
     <div class="news-content">
       <p>{{ berita.isiBerita || 'Konten berita belum tersedia.' }}</p>
     </div>
-    <!-- Button Rating Berita -->
+
     <div class="rating-stars">
 
       <ion-icon *ngFor="let jum of [1,2,3,4,5]" [name]="jum <= berita.rateUser ? 'star' : 'star-outline'" color="warning"
@@ -45,7 +45,7 @@
 
     </div>
 
-    <!-- Section Komentar -->
+
     <div class="comments-section">
       <h3>Komentar ({{ filteredComments.length }})</h3>
 
@@ -64,7 +64,7 @@
         </div>
       </div>
 
-      <!-- Input Komentar -->
+
       <div class="add-comment">
         <img [src]="userData?.fotoProfil" alt="foto user" class="avatar" />
         <ion-input [(ngModel)]="newComment" placeholder="Tambah komentar..." (keyup.enter)="addComment()"></ion-input>

@@ -92,7 +92,6 @@ export class Akunservice {
 
   constructor() {}
 
-  /** Login */
   login(email: string, pass: string): Akun | null {
     const found = this.accounts.find(
       (acc) => acc.accountEmail === email && acc.accountPass === pass
@@ -105,7 +104,6 @@ export class Akunservice {
     return null;
   }
 
-  /** Ambil akun yang sedang login */
   getCurrentUser(): Akun | null {
     if (this.loggedInUser) return this.loggedInUser;
 
@@ -117,15 +115,12 @@ export class Akunservice {
     return null;
   }
 
-  /** Logout */
   logout(): void {
     this.loggedInUser = null;
     localStorage.removeItem('loggedUser');
   }
 
-  /** Update data user dan simpan ke localStorage */
   updateUser(updated: Akun): void {
-    // Update di array accounts
     const index = this.accounts.findIndex(
       (acc) => acc.accountEmail === updated.accountEmail
     );
@@ -133,14 +128,11 @@ export class Akunservice {
       this.accounts[index] = updated;
     }
 
-    // Update di memori
     this.loggedInUser = updated;
 
-    // Simpan ke localStorage
     localStorage.setItem('loggedUser', JSON.stringify(updated));
   }
 
-  /** Cek apakah ada user yang sedang login */
   isUserLoggedIn(): boolean {
     return this.getCurrentUser() !== null;
   }
