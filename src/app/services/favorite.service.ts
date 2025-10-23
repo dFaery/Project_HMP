@@ -8,6 +8,7 @@ export interface FavoriteNews {
   penerbit: string;
   rating: number;
   jumlahReview: number;
+  views: number;
 }
 
 @Injectable({

@@ -7,7 +7,7 @@
 
 <ion-content [fullscreen]="true">
   <div *ngFor="let fav of favorites" style="position: relative; margin-bottom: 10px;">
-  <ion-card class="section-listberita" [routerLink]="['/detail-berita', fav.id]">
+  <ion-card class="section-listberita" [routerLink]="['/detail-berita', fav.id]" (click)="addViews(fav.id)">
     <div style="display: flex; padding: 10px; gap: 10px; background-color: #ffffff;">
 
       <div style="flex: 2; display: flex; align-items: center">
@@ -23,6 +23,8 @@
         <div style="display: flex; align-items: center; gap: 4px">
           <ion-icon name="star" size="small" color="warning"></ion-icon>
           <span>{{ fav.rating }} ({{ fav.jumlahReview }} reviews)</span>
+          <ion-icon name="eye-outline">{{ fav.views }}</ion-icon>
+              <span>{{ fav.views }} views</span>
         </div>
       </div>    
     </div>

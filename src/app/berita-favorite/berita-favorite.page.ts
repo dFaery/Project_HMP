@@ -1,5 +1,6 @@
 import { Component} from '@angular/core';
 import { FavoriteService, FavoriteNews } from '../services/favorite.service';
+import { Beritaservice } from '../services/beritaservice';
 
 @Component({
   selector: 'app-berita-favorite',
@@ -10,7 +11,10 @@ import { FavoriteService, FavoriteNews } from '../services/favorite.service';
 export class BeritaFavoritePage {
   favorites: FavoriteNews[] = [];
 
-  constructor(private favoriteService: FavoriteService) {}
+  constructor(
+    private favoriteService: FavoriteService,
+    private beritaService: Beritaservice,
+  ) {}
 
   ionViewWillEnter() {
     this.loadFavorites();
@@ -27,6 +31,10 @@ export class BeritaFavoritePage {
     this.toastMessage = 'Berita berhasil dihapus dari favorit';
     this.isToastOpen = true;
     this.loadFavorites();
+  }
+
+  addViews(id: number) {
+    this.beritaService.addView(id);
   }
 
 }
