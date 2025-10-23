@@ -34,4 +34,8 @@ export class RekomendasiBeritaPage implements OnInit {
     this.isToastOpen = true;
     this.favoriteService.addFavorite(favorite);
   }
+
+  checkIsFavorite(id: number): boolean {
+    return this.favoriteService.showIconFavorites(id);
+  }
 }

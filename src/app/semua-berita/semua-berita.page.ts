@@ -68,4 +68,8 @@ export class SemuaBeritaPage implements OnInit {
   addViews(id: number) {
     this.beritaservice.addView(id);
   }
+
+  checkIsFavorite(id: number): boolean {
+    return this.favoriteService.showIconFavorites(id);
+  }
 }

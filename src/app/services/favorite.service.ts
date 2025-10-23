@@ -36,4 +36,13 @@ export class FavoriteService {
       fav => fav.judulBerita !== berita.judulBerita
     );
   }
+
+  showIconFavorites(id: number) {
+    for (let i = 0; i < this.favorites.length; i++) {
+      if (this.favorites[i].id === id) {
+        return true;
+      }
+    }
+    return false;
+  }
 }

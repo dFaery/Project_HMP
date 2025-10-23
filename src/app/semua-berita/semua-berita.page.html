@@ -44,16 +44,31 @@
             </ion-item>
           </ion-card-content>
         </ion-card>
-        <ion-button fill="outline" color="primary" (click)="addToFavorite(berita);" style="
-            position: absolute;
-            bottom: 0;
-            left: 23px;
-            height: 32px;
-            width: 32px;
-            --padding-start: 0;
-            --padding-end: 0;
-          ">
+        <ion-button *ngIf="!checkIsFavorite(berita.id)" fill="outline" size="small" color="primary"
+          (click)="addToFavorite(berita)" style="
+    position: absolute;
+    bottom: 4px;
+    right: 16px;
+    height: 32px;
+    width: 32px;
+    --padding-start: 0;
+    --padding-end: 0;
+  ">
           <ion-icon name="bookmark-outline"></ion-icon>
+        </ion-button>
+
+        <!-- kalau ini beritanya udah ada di list favorite -->
+        <ion-button *ngIf="checkIsFavorite(berita.id)" fill="solid" size="small" color="primary"
+          (click)="addToFavorite(berita)" style="
+    position: absolute;
+    bottom: 4px;
+    right: 16px;
+    height: 32px;
+    width: 32px;
+    --padding-start: 0;
+    --padding-end: 0;
+  ">
+          <ion-icon name="bookmark"></ion-icon>
         </ion-button>
       </ion-col>
 
@@ -86,16 +101,31 @@
             </ion-item>
           </ion-card-content>
         </ion-card>
-        <ion-button fill="outline" color="primary" (click)="addToFavorite(berita);" style="
-            position: absolute;
-            bottom: 0;
-            left: 23px;
-            height: 32px;
-            width: 32px;
-            --padding-start: 0;
-            --padding-end: 0;
-          ">
+        <ion-button *ngIf="!checkIsFavorite(berita.id)" fill="outline" size="small" color="primary"
+          (click)="addToFavorite(berita)" style="
+    position: absolute;
+    bottom: 4px;
+    right: 16px;
+    height: 32px;
+    width: 32px;
+    --padding-start: 0;
+    --padding-end: 0;
+  ">
           <ion-icon name="bookmark-outline"></ion-icon>
+        </ion-button>
+
+        <!-- kalau ini beritanya udah ada di list favorite -->
+        <ion-button *ngIf="checkIsFavorite(berita.id)" fill="solid" size="small" color="primary"
+          (click)="addToFavorite(berita)" style="
+    position: absolute;
+    bottom: 4px;
+    right: 16px;
+    height: 32px;
+    width: 32px;
+    --padding-start: 0;
+    --padding-end: 0;
+  ">
+          <ion-icon name="bookmark"></ion-icon>
         </ion-button>
       </ion-col>
     </ion-row>
@@ -126,16 +156,31 @@
             </ion-item>
           </ion-card-content>
         </ion-card>
-        <ion-button fill="outline" color="primary" (click)="addToFavorite(berita);" style="
-            position: absolute;
-            bottom: 0;
-            left: 23px;
-            height: 32px;
-            width: 32px;
-            --padding-start: 0;
-            --padding-end: 0;
-          ">
+        <ion-button *ngIf="!checkIsFavorite(berita.id)" fill="outline" size="small" color="primary"
+          (click)="addToFavorite(berita)" style="
+    position: absolute;
+    bottom: 4px;
+    right: 16px;
+    height: 32px;
+    width: 32px;
+    --padding-start: 0;
+    --padding-end: 0;
+  ">
           <ion-icon name="bookmark-outline"></ion-icon>
+        </ion-button>
+
+        <!-- kalau ini beritanya udah ada di list favorite -->
+        <ion-button *ngIf="checkIsFavorite(berita.id)" fill="solid" size="small" color="primary"
+          (click)="addToFavorite(berita)" style="
+    position: absolute;
+    bottom: 4px;
+    right: 16px;
+    height: 32px;
+    width: 32px;
+    --padding-start: 0;
+    --padding-end: 0;
+  ">
+          <ion-icon name="bookmark"></ion-icon>
         </ion-button>
       </ion-col>
     </ion-row>
@@ -168,16 +213,31 @@
         </ion-card>
 
 
-        <ion-button fill="outline" color="primary" (click)="addToFavorite(berita);" style="
-            position: absolute;
-            bottom: 0;
-            left: 23px;
-            height: 32px;
-            width: 32px;
-            --padding-start: 0;
-            --padding-end: 0;
-          ">
+        <ion-button *ngIf="!checkIsFavorite(berita.id)" fill="outline" size="small" color="primary"
+          (click)="addToFavorite(berita)" style="
+    position: absolute;
+    bottom: 4px;
+    right: 16px;
+    height: 32px;
+    width: 32px;
+    --padding-start: 0;
+    --padding-end: 0;
+  ">
           <ion-icon name="bookmark-outline"></ion-icon>
+        </ion-button>
+
+        <!-- kalau ini beritanya udah ada di list favorite -->
+        <ion-button *ngIf="checkIsFavorite(berita.id)" fill="solid" size="small" color="primary"
+          (click)="addToFavorite(berita)" style="
+    position: absolute;
+    bottom: 4px;
+    right: 16px;
+    height: 32px;
+    width: 32px;
+    --padding-start: 0;
+    --padding-end: 0;
+  ">
+          <ion-icon name="bookmark"></ion-icon>
         </ion-button>
       </ion-col>
     </ion-row>
