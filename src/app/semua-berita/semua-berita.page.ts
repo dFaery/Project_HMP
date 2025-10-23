@@ -65,4 +65,7 @@ export class SemuaBeritaPage implements OnInit {
     );
   }
 
+  addViews(id: number) {
+    this.beritaservice.addView(id);
+  }
 }

@@ -13,15 +13,22 @@ export class RekomendasiBeritaPage implements OnInit {
 
   berita: any[] = [];
 
-  constructor(private favoriteService: FavoriteService, private beritaService: Beritaservice) {}
+  constructor(
+    private favoriteService: FavoriteService,
+    private beritaService: Beritaservice
+  ) {}
 
   ngOnInit(): void {
     this.berita = this.beritaService.berita;
   }
 
+  addViews(id: number) {
+    this.beritaService.addView(id);
+  }
+
   isToastOpen = false;
   toastMessage = '';
-  
+
   addToFavorite(favorite: FavoriteNews) {
     this.toastMessage = 'Berita ditambahkan ke favorit';
     this.isToastOpen = true;

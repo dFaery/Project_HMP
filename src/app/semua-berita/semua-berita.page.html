@@ -39,25 +39,21 @@
               <ion-label>
                 {{ berita.rating }} | {{ berita.jumlahReview }} ulasan
               </ion-label>
+              <ion-icon name="eye-outline"></ion-icon>
+              <span>{{ berita.views }} views</span>
             </ion-item>
-
-            <!-- <ion-button fill="outline" size="small" expand="block" (click)="addToFavorite(berita)">
-              <ion-icon name="bookmark-outline" slot="start"></ion-icon>
-              Tambah ke Favorit
-            </ion-button> -->
           </ion-card-content>
         </ion-card>
         <ion-button fill="outline" color="primary" (click)="addToFavorite(berita);" style="
             position: absolute;
             bottom: 0;
             left: 23px;
-            height: 10px;
-            width: 120px;
+            height: 32px;
+            width: 32px;
             --padding-start: 0;
             --padding-end: 0;
           ">
           <ion-icon name="bookmark-outline"></ion-icon>
-          Tambah ke Favorit
         </ion-button>
       </ion-col>
 
@@ -69,7 +65,7 @@
   <ion-grid *ngIf="jenisTampilan === 'economics'">
     <ion-row *ngFor="let beritas of chunkArray(getBeritaByKategori('economics'), 2); let i = index">
       <ion-col size="6" *ngFor="let berita of beritas; let i2 = index" class="news-col">
-        <ion-card class="news-card" [routerLink]="['/detail-berita', berita.id]">
+        <ion-card class="news-card" [routerLink]="['/detail-berita', berita.id]" (click)="addViews(berita.id)">
           <ion-img [src]="berita.gambarUrl" alt="Gambar Berita"></ion-img>
 
           <ion-card-header>
@@ -85,25 +81,21 @@
               <ion-label>
                 {{ berita.rating }} | {{ berita.jumlahReview }} ulasan
               </ion-label>
+              <ion-icon name="eye-outline"></ion-icon>
+              <span>{{ berita.views }} views</span>
             </ion-item>
-
-            <!-- <ion-button fill="outline" size="small" expand="block" (click)="addToFavorite(berita)">
-              <ion-icon name="bookmark-outline" slot="start"></ion-icon>
-              Tambah ke Favorit
-            </ion-button> -->
           </ion-card-content>
         </ion-card>
         <ion-button fill="outline" color="primary" (click)="addToFavorite(berita);" style="
             position: absolute;
             bottom: 0;
             left: 23px;
-            height: 10px;
-            width: 120px;
+            height: 32px;
+            width: 32px;
             --padding-start: 0;
             --padding-end: 0;
           ">
           <ion-icon name="bookmark-outline"></ion-icon>
-          Tambah ke Favorit
         </ion-button>
       </ion-col>
     </ion-row>
@@ -129,25 +121,21 @@
               <ion-label>
                 {{ berita.rating }} | {{ berita.jumlahReview }} ulasan
               </ion-label>
+              <ion-icon name="eye-outline"></ion-icon>
+              <span>{{ berita.views }} views</span>
             </ion-item>
-
-            <!-- <ion-button fill="outline" size="small" expand="block" (click)="addToFavorite(berita)">
-              <ion-icon name="bookmark-outline" slot="start"></ion-icon>
-              Tambah ke Favorit
-            </ion-button> -->
           </ion-card-content>
         </ion-card>
         <ion-button fill="outline" color="primary" (click)="addToFavorite(berita);" style="
             position: absolute;
             bottom: 0;
             left: 23px;
-            height: 10px;
-            width: 120px;
+            height: 32px;
+            width: 32px;
             --padding-start: 0;
             --padding-end: 0;
           ">
           <ion-icon name="bookmark-outline"></ion-icon>
-          Tambah ke Favorit
         </ion-button>
       </ion-col>
     </ion-row>
@@ -173,22 +161,23 @@
               <ion-label>
                 {{ berita.rating }} | {{ berita.jumlahReview }} ulasan
               </ion-label>
+              <ion-icon name="eye-outline"></ion-icon>
+              <span>{{ berita.views }} views</span>
             </ion-item>
-
           </ion-card-content>
         </ion-card>
-        
+
+
         <ion-button fill="outline" color="primary" (click)="addToFavorite(berita);" style="
             position: absolute;
             bottom: 0;
             left: 23px;
-            height: 10px;
-            width: 120px;
+            height: 32px;
+            width: 32px;
             --padding-start: 0;
             --padding-end: 0;
           ">
           <ion-icon name="bookmark-outline"></ion-icon>
-          Tambah ke Favorit
         </ion-button>
       </ion-col>
     </ion-row>
