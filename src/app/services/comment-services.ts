@@ -15,13 +15,13 @@ export class CommentServices {
     comments: Comment[] = [
     {
       idBerita: 1,
-      username: 'Username123',
-      comment: 'Komentar dari Username123',
+      username: 'Hans Kristofer',
+      comment: 'Komentar dari Hans Kristofer',
       avatar: 'assets/avatar-hans.jpeg',
     },
     {
       idBerita: 2,
-      username: 'User456',
+      username: 'Hans Kristofer',
       comment: 'Saya setuju dengan kebijakan ini',
       avatar: 'assets/avatar-hans.jpeg',
     },

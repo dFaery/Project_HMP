@@ -53,7 +53,7 @@
         <div *ngFor="let c of filteredComments" class="comment-item">
           <img [src]="c.avatar" alt="avatar" class="avatar" />
           <div class="comment-body">
-            <div class="username">{{ userData.namaDepan }} {{ userData.namaBelakang }}</div>
+            <div class="username">{{ c.username }}</div>
             <div class="text">{{ c.comment }}</div>
           </div>
         </div>
