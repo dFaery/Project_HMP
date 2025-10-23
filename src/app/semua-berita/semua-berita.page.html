@@ -23,7 +23,7 @@
   <ion-grid *ngIf="jenisTampilan === 'trending'">
     <ion-row *ngFor="let beritas of chunkArray(getBeritaByKategori('trending'), 2); let i = index">
       <ion-col size="6" *ngFor="let berita of beritas; let i2 = index" class="news-col">
-        <ion-card class="news-card" [routerLink]="['/detail-berita', berita.id]">
+        <ion-card class="news-card" [routerLink]="['/detail-berita', berita.id]" (click)="addViews(berita.id)">
           <ion-img [src]="berita.gambarUrl" alt="Gambar Berita"></ion-img>
 
           <ion-card-header>
@@ -105,7 +105,7 @@
   <ion-grid *ngIf="jenisTampilan === 'technology'">
     <ion-row *ngFor="let beritas of chunkArray(getBeritaByKategori('technology'), 2); let i = index">
       <ion-col size="6" *ngFor="let berita of beritas; let i2 = index" class="news-col">
-        <ion-card class="news-card" [routerLink]="['/detail-berita', berita.id]">
+        <ion-card class="news-card" [routerLink]="['/detail-berita', berita.id]" (click)="addViews(berita.id)">
           <ion-img [src]="berita.gambarUrl" alt="Gambar Berita"></ion-img>
 
           <ion-card-header>
@@ -145,7 +145,7 @@
   <ion-grid *ngIf="jenisTampilan === 'search'">
     <ion-row *ngFor="let beritas of chunkArray(hasilPencarian, 2); let i = index">
       <ion-col size="6" *ngFor="let berita of beritas; let i2 = index" class="news-col">
-        <ion-card class="news-card" [routerLink]="['/detail-berita', berita.id]">
+        <ion-card class="news-card" [routerLink]="['/detail-berita', berita.id]" (click)="addViews(berita.id)">
           <ion-img [src]="berita.gambarUrl" alt="Gambar Berita"></ion-img>
 
           <ion-card-header>
