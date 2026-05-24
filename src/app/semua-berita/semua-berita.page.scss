@@ -1,25 +1,30 @@
+.header-white {
+  ion-toolbar {
+    background-color: #ffffff;
+  }
+}
+
+.searchbar-black {
+  --color: #000000;
+}
+
 ion-segment-button {
-  --color: #000000;          
-  --color-checked: #3880ff;  
+  --color: #000000;
+  --color-checked: #3880ff;
   --indicator-color: #3880ff;
 }
 
-ion-item{
-  --background: transparent;
-  --padding-start: 0;
-  --inner-padding-end:0;
+.tabs {
+  background-color: #ffffff;
 }
 
-.tabs{
-    background-color: #ffffff;
-}
-
-.nav-tabs{
-    font-size: 10px;
+.nav-tabs {
+  font-size: 12px;
 }
 
 .news-col {
   display: flex;
+  position: relative; /* supaya .fav-btn bisa absolute relatif terhadap col */
 }
 
 .news-card {
@@ -45,3 +50,14 @@ ion-item{
   background-color: white;
   margin-top: auto;
 }
+
+.fav-btn {
+  position: absolute;
+  bottom: 4px;
+  right: 16px;
+  height: 32px;
+  width: 32px;
+  --padding-start: 0;
+  --padding-end: 0;
+}
+

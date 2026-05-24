@@ -6,6 +6,10 @@ describe('LoginPage', () => {
   let fixture: ComponentFixture<LoginPage>;
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [LoginPage],
+    });
+
     fixture = TestBed.createComponent(LoginPage);
     component = fixture.componentInstance;
     fixture.detectChanges();

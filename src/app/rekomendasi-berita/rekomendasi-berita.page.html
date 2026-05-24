@@ -1,66 +1,59 @@
 <ion-header [translucent]="true">
-  <ion-toolbar class="tabs">
+  <ion-toolbar class="tabs" color="white">
     <h3>Rekomendasi Berita untuk Kamu</h3>
     <p>Terakhir diperbaharui 26 menit lalu</p>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ng-container *ngFor="let berita of berita">
 
-    <div style="position: relative; margin-bottom: 10px;" *ngIf="berita.rekomendasi">
-      <ion-card [routerLink]="['/detail-berita', berita.id]" (click)="addViews(berita.id)">
-        <div style="display: flex; padding: 10px; gap: 10px; background-color: #ffffff;">
-          <div style="flex: 2; display: flex; align-items: center">
-            <img [src]="berita.gambarUrl" alt="Berita Image"
-              style="width: 100%; border-radius: 8px; object-fit: cover" />
+  <ng-container *ngFor="let item of berita">
+    <div *ngIf="item.rekomendasi" class="card-wrapper">
+
+      <ion-card [routerLink]="['/detail-berita', item.id]" (click)="addViews(item.id)">
+        <div class="card-content">
+          
+          <div class="image-box">
+            <img [src]="item.gambarUrl" alt="Berita" />
           </div>
 
-          <div style="flex: 3">
-            <p style="margin: 0; font-weight: bold">
-              {{ berita.judulBerita }}
-            </p>
-            <p style="margin: 0"><ion-text>{{ berita.tanggalRilis }}</ion-text></p>
-            <p style="margin: 0"><ion-text>by {{ berita.penerbit }}</ion-text></p>
-            <div style="display: flex; align-items: center; gap: 4px">
+          <div class="info-box">
+            <p class="judul">{{ item.judulBerita }}</p>
+            <p><ion-text>{{ item.tanggalRilis }}</ion-text></p>
+            <p><ion-text>by {{ item.penerbit }}</ion-text></p>
+
+            <div class="rating-row">
               <ion-icon name="star" size="small" color="warning"></ion-icon>
-              <span>{{ berita.rating }} ({{ berita.jumlahReview }} reviews)</span>
-              <ion-icon name="eye-outline">{{ berita.views }}</ion-icon>
-              <span>{{ berita.views }} views</span>
+              <span>{{ item.rating }} ({{ item.jumlahReview }} reviews)</span>
+
+              <ion-icon name="eye-outline"></ion-icon>
+              <span>{{ item.views }} views</span>
             </div>
           </div>
+
         </div>
       </ion-card>
-      <!-- kalo misal beritanya blm ada di list favorite -->
-      <ion-button *ngIf="!checkIsFavorite(berita.id)" fill="outline" size="small" color="primary"
-        (click)="addToFavorite(berita)" style="
-    position: absolute;
-    bottom: 4px;
-    right: 16px;
-    height: 32px;
-    width: 32px;
-    --padding-start: 0;
-    --padding-end: 0;
-  ">
-        <ion-icon name="bookmark-outline"></ion-icon>
+
+      <!-- Favorite Button -->
+      <ion-button
+        fill="{{ checkIsFavorite(item.id) ? 'solid' : 'outline' }}"
+        size="small"
+        color="primary"
+        (click)="addToFavorite(item)"
+        class="fav-btn"
+      >
+        <ion-icon [name]="checkIsFavorite(item.id) ? 'bookmark' : 'bookmark-outline'"></ion-icon>
       </ion-button>
 
-      <!-- kalau ini beritanya udah ada di list favorite -->
-      <ion-button *ngIf="checkIsFavorite(berita.id)" fill="solid" size="small" color="primary"
-        (click)="addToFavorite(berita)" style="
-    position: absolute;
-    bottom: 4px;
-    right: 16px;
-    height: 32px;
-    width: 32px;
-    --padding-start: 0;
-    --padding-end: 0;
-  ">
-        <ion-icon name="bookmark"></ion-icon>
-      </ion-button>
     </div>
   </ng-container>
+
 </ion-content>
 
-<ion-toast [isOpen]="isToastOpen" message="{{ toastMessage }}" duration="1000" (didDismiss)="isToastOpen = false">
+<ion-toast
+  [isOpen]="isToastOpen"
+  [message]="toastMessage"
+  duration="1000"
+  (didDismiss)="isToastOpen = false"
+>
 </ion-toast>

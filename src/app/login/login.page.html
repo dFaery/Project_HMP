@@ -1,14 +1,15 @@
 <ion-content class="login-page">
   <ion-grid fixed>
     <ion-row class="ion-justify-content-center ion-align-items-center full-height">
-      <ion-col size="6" size-md="6">
+      <ion-col size="12" size-md="6">
         <div class="login-container ion-padding">
           <div class="header">
             <h1>Welcome!</h1>
-            <p>Login to unlock the full potential of app</p>
+            <p>Login to unlock the full potential of the app</p>
           </div>
 
           <form (ngSubmit)="checkAcc()">
+            <!-- Email -->
             <ion-item class="input-item" lines="none">
               <ion-input
                 labelPlacement="stacked"
@@ -19,14 +20,11 @@
                 name="email"
                 required
               >
-                <ion-icon
-                  slot="start"
-                  name="mail-outline"
-                  aria-hidden="true"
-                ></ion-icon>
+                <ion-icon slot="start" name="mail-outline"></ion-icon>
               </ion-input>
             </ion-item>
 
+            <!-- Password -->
             <ion-item class="input-item" lines="none">
               <ion-input
                 labelPlacement="stacked"
@@ -37,15 +35,8 @@
                 name="password"
                 required
               >
-                <ion-icon
-                  slot="start"
-                  name="lock-closed"
-                  aria-hidden="true"
-                ></ion-icon>
-
-                <ion-input-password-toggle
-                  slot="end"
-                ></ion-input-password-toggle>
+                <ion-icon slot="start" name="lock-closed"></ion-icon>
+                <ion-input-password-toggle slot="end"></ion-input-password-toggle>
               </ion-input>
             </ion-item>
 
@@ -60,9 +51,7 @@
           </div>
 
           <div class="terms">
-            <p>
-              By continuing, I accept the Terms and Condition & Privacy Policy
-            </p>
+            <p>By continuing, I accept the Terms and Conditions & Privacy Policy</p>
           </div>
         </div>
       </ion-col>

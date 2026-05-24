@@ -1,72 +1,69 @@
-import { Beritaservice } from './../services/beritaservice';
 import { Component, OnInit } from '@angular/core';
 import { FavoriteService, FavoriteNews } from '../services/favorite.service';
-import { ActivatedRoute } from '@angular/router';
+import { Beritaservice } from '../services/beritaservice';
 
 @Component({
   selector: 'app-semua-berita',
   templateUrl: './semua-berita.page.html',
   styleUrls: ['./semua-berita.page.scss'],
-  standalone: false,
+  standalone : false,
 })
 export class SemuaBeritaPage implements OnInit {
+  semuaBerita: any[] = [];
+  hasilPencarian: any[] = [];
+  beritaDicari: string = '';
+  jenisTampilan: string = 'trending';
+
+  isToastOpen = false;
+  toastMessage = '';
+
   constructor(
     private favoriteService: FavoriteService,
-    private route: ActivatedRoute,
     public beritaservice: Beritaservice
   ) {}
 
-  berita: any;
-  jenisTampilan: string = 'trending';
-  beritaDicari: string = '';
-  semuaBerita: any[] = [];
-  hasilPencarian: any[] = [];
-
-  ngOnInit() {
+  ngOnInit(): void {
     this.semuaBerita = this.beritaservice.berita;
   }
 
-  cariBeritaByJudul() {
-    const lowerKeyword = this.beritaDicari.toLowerCase();
-    this.jenisTampilan = 'search';
+  cariBeritaByJudul(): void {
+    const lowerKeyword = this.beritaDicari.toLowerCase().trim();
+
     if (!lowerKeyword) {
-      // kalau kosong, dia munculin semua berita
       this.hasilPencarian = [...this.semuaBerita];
     } else {
-      this.hasilPencarian = this.semuaBerita.filter((berita) =>
-        berita.judulBerita.toLowerCase().includes(lowerKeyword)
+      this.hasilPencarian = this.semuaBerita.filter(b =>
+        b.judulBerita.toLowerCase().includes(lowerKeyword)
       );
     }
+
+    this.jenisTampilan = 'search';
   }
 
   chunkArray(arr: any[], chunkSize: number): any[][] {
-    const result = [];
+    const result: any[][] = [];
     for (let i = 0; i < arr.length; i += chunkSize) {
       result.push(arr.slice(i, i + chunkSize));
     }
     return result;
   }
 
-  isToastOpen = false;
-  toastMessage = '';
-
-  favorites: FavoriteNews[] = [];
-  addToFavorite(favorite: FavoriteNews) {
-    this.toastMessage = 'Berita ditambahkan ke favorit';
-    this.isToastOpen = true;
-    this.favoriteService.addFavorite(favorite);
-  }
-
-  getBeritaByKategori(kategori: string) {
-    return this.semuaBerita.filter((b: any) =>
+  getBeritaByKategori(kategori: string): any[] {
+    return this.semuaBerita.filter(b =>
       Array.isArray(b.kategori)
         ? b.kategori.includes(kategori)
         : b.kategori === kategori
     );
   }
 
-  addViews(id: number) {
+  addViews(id: number): void {
     this.beritaservice.addView(id);
+  }
+
+  addToFavorite(favorite: FavoriteNews): void {
+    this.toastMessage = 'Berita ditambahkan ke favorit';
+    this.isToastOpen = true;
+    this.favoriteService.addFavorite(favorite);
   }
 
   checkIsFavorite(id: number): boolean {

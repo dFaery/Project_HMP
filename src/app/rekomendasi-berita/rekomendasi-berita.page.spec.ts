@@ -6,6 +6,10 @@ describe('RekomendasiBeritaPage', () => {
   let fixture: ComponentFixture<RekomendasiBeritaPage>;
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [RekomendasiBeritaPage],
+    });
+
     fixture = TestBed.createComponent(RekomendasiBeritaPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
